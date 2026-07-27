@@ -1,1 +1,147 @@
+/* ==========================================
+   English Buddy Pro v2.0
+   Main Styles
+========================================== */
 
+/* Body */
+
+body{
+    background:var(--background);
+    color:var(--text-primary);
+    font-family:var(--font-family);
+    min-height:100vh;
+}
+
+/* App Container */
+
+#appContainer{
+    max-width:600px;
+    margin:auto;
+    padding:16px;
+    padding-bottom:90px;
+}
+
+/* Splash Screen */
+
+#splashScreen{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.splashContent{
+    text-align:center;
+    color:#fff;
+}
+
+.logoCircle{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:#fff;
+    color:var(--primary);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:48px;
+    margin:auto;
+    box-shadow:var(--shadow-large);
+}
+
+.loader{
+    margin-top:25px;
+    width:220px;
+    height:8px;
+    background:rgba(255,255,255,.25);
+    border-radius:50px;
+    overflow:hidden;
+}
+
+.loaderBar{
+    width:30%;
+    height:100%;
+    background:#fff;
+    animation:loading 1.8s infinite;
+}
+
+@keyframes loading{
+
+0%{
+width:0%;
+}
+
+100%{
+width:100%;
+}
+
+}
+
+/* Header */
+
+.appHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+}
+
+.profileCircle{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:var(--primary);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+}
+
+/* Goal Card */
+
+.goalCard{
+    background:var(--surface);
+    border-radius:var(--radius-large);
+    padding:20px;
+    box-shadow:var(--shadow-small);
+    margin-bottom:20px;
+}
+
+.progressContainer{
+    width:100%;
+    height:12px;
+    background:#E5E7EB;
+    border-radius:50px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+#goalProgress{
+    width:0%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        var(--secondary),
+        var(--primary)
+    );
+    transition:.4s;
+}
+
+#continueLearning{
+    width:100%;
+    border:none;
+    background:var(--primary);
+    color:#fff;
+    padding:14px;
+    border-radius:var(--radius-medium);
+    font-size:16px;
+    margin-top:16px;
+}
+
+#continueLearning:hover{
+    background:var(--primary-dark);
+  }
