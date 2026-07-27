@@ -1,1 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+         English Buddy Pro v2.0
+         Offline English Learning App
+         ========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="theme-color"
+        content="#2563EB">
+
+    <meta
+        name="description"
+        content="Offline English Learning App for Hindi Speakers">
+
+    <title>
+        English Buddy Pro
+    </title>
+
+    <!-- PWA -->
+
+    <link
+        rel="manifest"
+        href="manifest.json">
+
+    <!-- Icons -->
+
+    <link
+        rel="icon"
+        href="assets/icons/icon-192.png">
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/theme.css">
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="css/responsive.css">
+
+</head>
+
+<body>
+
+<!-- ==========================================
+     Splash Screen
+========================================== -->
+
+<div id="splashScreen">
+
+    <div class="splashContent">
+
+        <div class="logoCircle">
+
+            📘
+
+        </div>
+
+        <h1>
+
+            English Buddy Pro
+
+        </h1>
+
+        <p>
+
+            Learn English with Confidence
+
+        </p>
+
+        <div class="loader">
+
+            <div class="loaderBar"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     Main Application
+========================================== -->
+
+<div id="appContainer">
+
+<!-- ==========================================
+     Header
+========================================== -->
+
+<header class="appHeader">
+
+<div class="headerLeft">
+
+<h2>
+
+👋 Welcome
+
+</h2>
+
+<p>
+
+Practice Every Day
+
+</p>
+
+</div>
+
+<div class="headerRight">
+
+<div class="profileCircle">
+
+🙂
+
+</div>
+
+</div>
+
+</header>
+
+<!-- ==========================================
+     Dashboard
+========================================== -->
+
+<main id="homePage">
+
+<section class="goalCard">
+
+<h3>
+
+🎯 Today's Goal
+
+</h3>
+
+<div class="progressContainer">
+
+<div id="goalProgress">
+
+</div>
+
+</div>
+
+<p>
+
+<span id="goalPercent">
+
+0%
+
+</span>
+
+Completed
+
+</p>
+
+<button id="continueLearning">
+
+Continue Learning
+
+</button>
+
+</section>
+
+<section class="statsGrid">
+
+<div class="statCard">
+
+<h2 id="xpValue">
+
+0
+
+</h2>
+
+<p>
+
+⭐ XP
+
+</p>
+
+</div>
+
+<div class="statCard">
+
+<h2 id="streakValue">
+
+0
+
+</h2>
+
+<p>
+
+🔥 Streak
+
+</p>
+
+</div>
+
+<div class="statCard">
+
+<h2 id="lessonValue">
+
+0
+
+</h2>
+
+<p>
+
+📖 Lessons
+
+</p>
+
+</div>
+
+<div class="statCard">
+
+<h2 id="quizValue">
+
+0
+
+</h2>
+
+<p>
+
+📝 Quiz
+
+</p>
+
+</div>
+
+</section>
+
+<section class="quickActions">
+
+<h2>
+
+Continue Learning
+
+</h2>
+
+<div class="actionGrid">
+
+<button class="actionButton">
+
+📖
+
+<span>
+
+Lessons
+
+</span>
+
+</button>
+
+<button class="actionButton">
+
+🎤
+
+<span>
+
+Speaking
+
+</span>
+
+</button>
+
+<button class="actionButton">
+
+📝
+
+<span>
+
+Quiz
+
+</span>
+
+</button>
+
+<button class="actionButton">
+
+📚
+
+<span>
+
+Stories
+
+</span>
+
+</button>
+
+  <!-- ==========================================
+     More Quick Actions
+========================================== -->
+
+<button class="actionButton">
+
+👦
+
+<span>
+
+Kids Zone
+
+</span>
+
+</button>
+
+<button class="actionButton">
+
+📚
+
+<span>
+
+Vocabulary
+
+</span>
+
+</button>
+
+<button class="actionButton">
+
+💬
+
+<span>
+
+Conversation
+
+</span>
+
+</button>
+
+<button class="actionButton">
+
+⚙️
+
+<span>
+
+Settings
+
+</span>
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+     Daily Challenge
+========================================== -->
+
+<section class="dailyChallenge">
+
+<h2>
+
+📅 Daily Challenge
+
+</h2>
+
+<div class="challengeCard">
+
+<h3>
+
+Word of the Day
+
+</h3>
+
+<h1 id="dailyWord">
+
+Welcome
+
+</h1>
+
+<p id="dailyMeaning">
+
+स्वागत
+
+</p>
+
+<button id="listenWord">
+
+🔊 Listen
+
+</button>
+
+</div>
+
+<div class="challengeCard">
+
+<h3>
+
+Sentence of the Day
+
+</h3>
+
+<p id="dailySentence">
+
+Good morning! Have a wonderful day.
+
+</p>
+
+<p id="dailySentenceHindi">
+
+सुप्रभात! आपका दिन शुभ हो।
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+     Recent Activity
+========================================== -->
+
+<section class="recentActivity">
+
+<h2>
+
+📈 Learning Progress
+
+</h2>
+
+<div class="activityCard">
+
+<div>
+
+⭐ Total XP
+
+</div>
+
+<strong id="totalXP">
+
+0
+
+</strong>
+
+</div>
+
+<div class="activityCard">
+
+<div>
+
+🔥 Current Streak
+
+</div>
+
+<strong id="currentStreak">
+
+0 Days
+
+</strong>
+
+</div>
+
+<div class="activityCard">
+
+<div>
+
+📖 Lessons Completed
+
+</div>
+
+<strong id="completedLessons">
+
+0
+
+</strong>
+
+</div>
+
+<div class="activityCard">
+
+<div>
+
+📝 Quiz Score
+
+</div>
+
+<strong id="quizScore">
+
+0%
+
+</strong>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+     Learning Modules
+========================================== -->
+
+<section id="lessonsPage" class="pageSection">
+
+<h2>
+
+📖 Lessons
+
+</h2>
+
+<div id="lessonContainer">
+
+</div>
+
+</section>
+
+<section id="vocabularyPage" class="pageSection">
+
+<h2>
+
+📚 Vocabulary
+
+</h2>
+
+<div id="vocabularyContainer">
+
+</div>
+
+</section>
+
+<section id="conversationPage" class="pageSection">
+
+<h2>
+
+💬 Daily Conversations
+
+</h2>
+
+<div id="conversationContainer">
+
+</div>
+
+</section>
+
+<section id="quizPage" class="pageSection">
+
+<h2>
+
+📝 Quiz
+
+</h2>
+
+<div id="quizContainer">
+
+</div>
+
+</section>
+
+<section id="storiesPage" class="pageSection">
+
+<h2>
+
+📚 Stories
+
+</h2>
+
+<div id="storyContainer">
+
+</div>
+
+</section>
+
+<section id="kidsPage" class="pageSection">
+
+<h2>
+
+👦 Kids Learning
+
+</h2>
+
+<div id="kidsContainer">
+
+</div>
+
+</section>
+<!-- ==========================================
+     Voice Practice Page
+========================================== -->
+
+<section id="speakPage" class="pageSection">
+
+<h2>
+
+🎤 Voice Practice
+
+</h2>
+
+<div class="voiceCard">
+
+<p>
+
+Practice speaking English using your microphone.
+
+</p>
+
+<button id="startListening">
+
+🎙 Start Speaking
+
+</button>
+
+<button id="stopListening">
+
+⏹ Stop
+
+</button>
+
+<div id="speechResult">
+
+Your speech will appear here...
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+     Search Section
+========================================== -->
+
+<section class="searchSection">
+
+<h2>
+
+🔍 Search Lessons
+
+</h2>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search English words, lessons or conversations...">
+
+</section>
+
+<!-- ==========================================
+     Achievements
+========================================== -->
+
+<section class="achievementSection">
+
+<h2>
+
+🏆 Achievements
+
+</h2>
+
+<div class="achievementGrid">
+
+<div class="achievementCard">
+
+⭐
+
+<h3>
+
+First Lesson
+
+</h3>
+
+<p>
+
+Complete your first lesson.
+
+</p>
+
+</div>
+
+<div class="achievementCard">
+
+🔥
+
+<h3>
+
+7 Day Streak
+
+</h3>
+
+<p>
+
+Practice for seven consecutive days.
+
+</p>
+
+</div>
+
+<div class="achievementCard">
+
+🎤
+
+<h3>
+
+Speaker
+
+</h3>
+
+<p>
+
+Complete 25 speaking exercises.
+
+</p>
+
+</div>
+
+<div class="achievementCard">
+
+📚
+
+<h3>
+
+Vocabulary Master
+
+</h3>
+
+<p>
+
+Learn 500 words.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+     Profile
+========================================== -->
+
+<section id="profilePage" class="pageSection">
+
+<h2>
+
+👤 My Profile
+
+</h2>
+
+<div class="profileCard">
+
+<h3 id="profileName">
+
+Guest User
+
+</h3>
+
+<p>
+
+Current Level
+
+</p>
+
+<h2 id="currentLevel">
+
+Level 1
+
+</h2>
+
+<p>
+
+Total XP
+
+</p>
+
+<h3 id="profileXP">
+
+0 XP
+
+</h3>
+
+<p>
+
+Daily Goal
+
+</p>
+
+<h3 id="profileGoal">
+
+0%
+
+</h3>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+     Settings
+========================================== -->
+
+<section id="settingsPage" class="pageSection">
+
+<h2>
+
+⚙ Settings
+
+</h2>
+
+<div class="settingsCard">
+
+<label>
+
+<input
+type="checkbox"
+id="darkModeToggle">
+
+Enable Dark Mode
+
+</label>
+
+</div>
+
+<div class="settingsCard">
+
+<label>
+
+<input
+type="checkbox"
+id="soundToggle"
+checked>
+
+Enable Sound
+
+</label>
+
+</div>
+
+<div class="settingsCard">
+
+<button id="resetProgress">
+
+🔄 Reset Progress
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+     Bottom Navigation
+========================================== -->
+
+<nav class="bottomNavigation">
+
+<button class="navButton active">
+
+🏠
+
+<span>
+
+Home
+
+</span>
+
+</button>
+
+<button class="navButton">
+
+📖
+
+<span>
+
+Learn
+
+</span>
+
+</button>
+
+<button class="navButton">
+
+🎤
+
+<span>
+
+Speak
+
+</span>
+
+</button>
+
+<button class="navButton">
+
+📝
+
+<span>
+
+Quiz
+
+</span>
+
+</button>
+
+<button class="navButton">
+
+👤
+
+<span>
+
+Profile
+
+</span>
+
+</button>
+
+</nav>
+
+  <!-- ==========================================
+     Install App Banner
+========================================== -->
+
+<section id="installBanner" class="installBanner hidden">
+
+<div class="installContent">
+
+<h3>
+
+📲 Install English Buddy Pro
+
+</h3>
+
+<p>
+
+Install the app for faster offline learning.
+
+</p>
+
+<button id="installApp">
+
+Install Now
+
+</button>
+
+<button id="closeInstall">
+
+Later
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+     Loading Overlay
+========================================== -->
+
+<div id="loadingOverlay" class="hidden">
+
+<div class="spinner"></div>
+
+<p>
+
+Loading...
+
+</p>
+
+</div>
+
+<!-- ==========================================
+     Toast Notification
+========================================== -->
+
+<div id="toastMessage" class="toast">
+
+Welcome to English Buddy Pro!
+
+</div>
+
+</main>
+
+</div>
+
+<!-- ==========================================
+     JavaScript Files
+========================================== -->
+
+<script src="js/utils.js"></script>
+
+<script src="js/storage.js"></script>
+
+<script src="js/dashboard.js"></script>
+
+<script src="js/navigation.js"></script>
+
+<script src="js/lessons.js"></script>
+
+<script src="js/vocabulary.js"></script>
+
+<script src="js/conversation.js"></script>
+
+<script src="js/quiz.js"></script>
+
+<script src="js/stories.js"></script>
+
+<script src="js/kids.js"></script>
+
+<script src="js/voice.js"></script>
+
+<script src="js/settings.js"></script>
+
+<script src="js/app.js"></script>
+
+<!-- ==========================================
+     Register Service Worker
+========================================== -->
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+window.addEventListener("load", () => {
+
+navigator.serviceWorker
+.register("service-worker.js")
+.then(() => {
+
+console.log("✅ Service Worker Registered");
+
+})
+.catch((error) => {
+
+console.log("Service Worker Error:", error);
+
+});
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
+
 
