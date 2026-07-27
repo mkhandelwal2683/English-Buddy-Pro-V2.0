@@ -1,1 +1,952 @@
+/* ==========================================
+   English Buddy Pro v2.0
+   Main Styles
+========================================== */
 
+/* Body */
+
+body{
+    background:var(--background);
+    color:var(--text-primary);
+    font-family:var(--font-family);
+    min-height:100vh;
+}
+
+/* App Container */
+
+#appContainer{
+    max-width:600px;
+    margin:auto;
+    padding:16px;
+    padding-bottom:90px;
+}
+
+/* Splash Screen */
+
+#splashScreen{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.splashContent{
+    text-align:center;
+    color:#fff;
+}
+
+.logoCircle{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:#fff;
+    color:var(--primary);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:48px;
+    margin:auto;
+    box-shadow:var(--shadow-large);
+}
+
+.loader{
+    margin-top:25px;
+    width:220px;
+    height:8px;
+    background:rgba(255,255,255,.25);
+    border-radius:50px;
+    overflow:hidden;
+}
+
+.loaderBar{
+    width:30%;
+    height:100%;
+    background:#fff;
+    animation:loading 1.8s infinite;
+}
+
+@keyframes loading{
+
+0%{
+width:0%;
+}
+
+100%{
+width:100%;
+}
+
+}
+
+/* Header */
+
+.appHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+}
+
+.profileCircle{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:var(--primary);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+}
+
+/* Goal Card */
+
+.goalCard{
+    background:var(--surface);
+    border-radius:var(--radius-large);
+    padding:20px;
+    box-shadow:var(--shadow-small);
+    margin-bottom:20px;
+}
+
+.progressContainer{
+    width:100%;
+    height:12px;
+    background:#E5E7EB;
+    border-radius:50px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+#goalProgress{
+    width:0%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        var(--secondary),
+        var(--primary)
+    );
+    transition:.4s;
+}
+
+#continueLearning{
+    width:100%;
+    border:none;
+    background:var(--primary);
+    color:#fff;
+    padding:14px;
+    border-radius:var(--radius-medium);
+    font-size:16px;
+    margin-top:16px;
+}
+
+#continueLearning:hover{
+    background:var(--primary-dark);
+  }
+
+/* ==========================================
+   Statistics Cards
+========================================== */
+
+.statsGrid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:16px;
+
+margin-bottom:24px;
+
+}
+
+.statCard{
+
+background:var(--surface);
+
+padding:18px;
+
+border-radius:var(--radius-large);
+
+text-align:center;
+
+box-shadow:var(--shadow-small);
+
+transition:transform .3s;
+
+}
+
+.statCard:hover{
+
+transform:translateY(-4px);
+
+}
+
+.statCard h2{
+
+font-size:32px;
+
+color:var(--primary);
+
+margin-bottom:8px;
+
+}
+
+.statCard p{
+
+color:var(--text-secondary);
+
+font-size:15px;
+
+}
+
+/* ==========================================
+   Quick Actions
+========================================== */
+
+.quickActions{
+
+margin-bottom:28px;
+
+}
+
+.quickActions h2{
+
+margin-bottom:16px;
+
+}
+
+.actionGrid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:16px;
+
+}
+
+.actionButton{
+
+background:var(--surface);
+
+border:none;
+
+padding:22px;
+
+border-radius:var(--radius-large);
+
+box-shadow:var(--shadow-small);
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+
+font-size:28px;
+
+transition:.3s;
+
+}
+
+.actionButton span{
+
+font-size:15px;
+
+color:var(--text-primary);
+
+font-weight:600;
+
+}
+
+.actionButton:hover{
+
+background:var(--primary);
+
+color:white;
+
+transform:translateY(-4px);
+
+}
+
+.actionButton:hover span{
+
+color:white;
+
+}
+
+/* ==========================================
+   Daily Challenge
+========================================== */
+
+.dailyChallenge{
+
+margin-bottom:28px;
+
+}
+
+.challengeCard{
+
+background:var(--surface);
+
+padding:20px;
+
+border-radius:var(--radius-large);
+
+box-shadow:var(--shadow-small);
+
+margin-bottom:16px;
+
+}
+
+.challengeCard h3{
+
+margin-bottom:10px;
+
+color:var(--primary);
+
+}
+
+.challengeCard h1{
+
+font-size:36px;
+
+margin-bottom:8px;
+
+}
+
+.challengeCard p{
+
+margin-bottom:8px;
+
+color:var(--text-secondary);
+
+}
+
+#listenWord{
+
+margin-top:10px;
+
+padding:12px 18px;
+
+border:none;
+
+background:var(--secondary);
+
+color:white;
+
+border-radius:var(--radius-medium);
+
+}
+
+/* ==========================================
+   Progress Cards
+========================================== */
+
+.recentActivity{
+
+margin-bottom:28px;
+
+}
+
+.activityCard{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px;
+
+background:var(--surface);
+
+border-radius:var(--radius-large);
+
+box-shadow:var(--shadow-small);
+
+margin-bottom:14px;
+
+}
+
+.activityCard strong{
+
+color:var(--primary);
+
+font-size:18px;
+
+}
+
+/* ==========================================
+   Lesson / Vocabulary / Story Cards
+========================================== */
+
+.lessonCard,
+
+.storyCard,
+
+.vocabularyCard{
+
+background:var(--surface);
+
+padding:18px;
+
+border-radius:var(--radius-large);
+
+box-shadow:var(--shadow-small);
+
+margin-bottom:16px;
+
+transition:.3s;
+
+}
+
+.lessonCard:hover,
+
+.storyCard:hover,
+
+.vocabularyCard:hover{
+
+transform:translateY(-3px);
+
+}
+
+.lessonCard h3,
+
+.storyCard h3,
+
+.vocabularyCard h3{
+
+color:var(--primary);
+
+margin-bottom:10px;
+
+}
+
+.lessonCard p,
+
+.storyCard p,
+
+.vocabularyCard p{
+
+color:var(--text-secondary);
+
+line-height:1.6;
+
+}
+
+/* ==========================================
+   Voice Practice Card
+========================================== */
+
+.voiceCard{
+
+background:var(--surface);
+
+padding:24px;
+
+border-radius:var(--radius-large);
+
+box-shadow:var(--shadow-small);
+
+text-align:center;
+
+margin-bottom:24px;
+
+}
+
+.voiceCard button{
+
+margin:10px;
+
+padding:14px 22px;
+
+border:none;
+
+border-radius:var(--radius-medium);
+
+background:var(--primary);
+
+color:white;
+
+font-size:16px;
+
+}
+
+#speechResult{
+
+margin-top:20px;
+
+padding:16px;
+
+border:2px dashed var(--border);
+
+border-radius:var(--radius-medium);
+
+min-height:70px;
+
+background:var(--surface-light);
+
+}
+/* ==========================================
+   Achievement Section
+========================================== */
+
+.achievementSection{
+
+margin-bottom:28px;
+
+}
+
+.achievementGrid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:16px;
+
+}
+
+.achievementCard{
+
+background:var(--surface);
+
+padding:20px;
+
+text-align:center;
+
+border-radius:var(--radius-large);
+
+box-shadow:var(--shadow-small);
+
+transition:.3s;
+
+font-size:32px;
+
+}
+
+.achievementCard:hover{
+
+transform:translateY(-5px);
+
+box-shadow:var(--shadow-medium);
+
+}
+
+.achievementCard h3{
+
+margin:12px 0 8px;
+
+font-size:18px;
+
+color:var(--primary);
+
+}
+
+.achievementCard p{
+
+font-size:14px;
+
+color:var(--text-secondary);
+
+}
+
+/* ==========================================
+   Profile
+========================================== */
+
+.profileCard{
+
+background:var(--surface);
+
+padding:24px;
+
+border-radius:var(--radius-large);
+
+box-shadow:var(--shadow-small);
+
+text-align:center;
+
+margin-bottom:24px;
+
+}
+
+.profileCard h2{
+
+color:var(--primary);
+
+margin:10px 0;
+
+}
+
+.profileCard h3{
+
+margin:8px 0;
+
+}
+
+.profileCard p{
+
+color:var(--text-secondary);
+
+margin-top:10px;
+
+}
+
+/* ==========================================
+   Settings
+========================================== */
+
+.settingsCard{
+
+background:var(--surface);
+
+padding:18px;
+
+margin-bottom:16px;
+
+border-radius:var(--radius-large);
+
+box-shadow:var(--shadow-small);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.settingsCard button{
+
+padding:12px 20px;
+
+border:none;
+
+background:var(--primary);
+
+color:white;
+
+border-radius:var(--radius-medium);
+
+}
+
+/* ==========================================
+   Search
+========================================== */
+
+.searchSection{
+
+margin-bottom:28px;
+
+}
+
+#searchBox{
+
+width:100%;
+
+padding:14px;
+
+border:2px solid var(--border);
+
+border-radius:var(--radius-medium);
+
+background:var(--surface);
+
+color:var(--text-primary);
+
+font-size:16px;
+
+margin-top:10px;
+
+}
+
+#searchBox:focus{
+
+border-color:var(--primary);
+
+}
+
+/* ==========================================
+   Bottom Navigation
+========================================== */
+
+.bottomNavigation{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+right:0;
+
+max-width:600px;
+
+margin:auto;
+
+background:var(--surface);
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+padding:12px 0;
+
+box-shadow:0 -4px 20px rgba(0,0,0,.08);
+
+border-top:1px solid var(--border);
+
+z-index:999;
+
+}
+
+.navButton{
+
+background:none;
+
+border:none;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:4px;
+
+color:var(--text-secondary);
+
+font-size:22px;
+
+}
+
+.navButton span{
+
+font-size:12px;
+
+}
+
+.navButton.active{
+
+color:var(--primary);
+
+}
+
+/* ==========================================
+   Install Banner
+========================================== */
+
+.installBanner{
+
+position:fixed;
+
+left:16px;
+
+right:16px;
+
+bottom:90px;
+
+background:var(--surface);
+
+padding:20px;
+
+border-radius:var(--radius-large);
+
+box-shadow:var(--shadow-large);
+
+z-index:1000;
+
+}
+
+.installContent{
+
+text-align:center;
+
+}
+
+.installContent button{
+
+margin:8px;
+
+padding:12px 18px;
+
+border:none;
+
+border-radius:var(--radius-medium);
+
+background:var(--primary);
+
+color:white;
+
+}
+
+/* ==========================================
+   Loading Overlay
+========================================== */
+
+#loadingOverlay{
+
+position:fixed;
+
+inset:0;
+
+background:rgba(255,255,255,.85);
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:9999;
+
+}
+
+.spinner{
+
+width:60px;
+
+height:60px;
+
+border:6px solid #E2E8F0;
+
+border-top:6px solid var(--primary);
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+margin-bottom:20px;
+
+}
+
+@keyframes spin{
+
+0%{
+
+transform:rotate(0deg);
+
+}
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* ==========================================
+   Toast Message
+========================================== */
+
+.toast{
+
+position:fixed;
+
+left:50%;
+
+bottom:110px;
+
+transform:translateX(-50%);
+
+background:var(--primary);
+
+color:white;
+
+padding:14px 22px;
+
+border-radius:var(--radius-medium);
+
+box-shadow:var(--shadow-medium);
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.35s;
+
+z-index:1200;
+
+}
+
+.toast.show{
+
+opacity:1;
+
+}
+
+/* ==========================================
+   Page Sections
+========================================== */
+
+.pageSection{
+
+display:none;
+
+margin-bottom:24px;
+
+}
+
+.pageSection.active{
+
+display:block;
+
+}
+
+/* ==========================================
+   Responsive Images
+========================================== */
+
+img{
+
+max-width:100%;
+
+height:auto;
+
+border-radius:var(--radius-medium);
+
+}
+
+/* ==========================================
+   Smooth Animation
+========================================== */
+
+.fadeIn{
+
+animation:fadeIn .5s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
