@@ -1,1 +1,246 @@
+/* ==========================================
+   English Buddy Pro v2.0
+   Theme Variables
+========================================== */
 
+:root{
+
+/* Brand Colors */
+
+--primary:#2563EB;
+--primary-light:#60A5FA;
+--primary-dark:#1D4ED8;
+
+--secondary:#22C55E;
+--secondary-light:#4ADE80;
+
+--accent:#F59E0B;
+--danger:#EF4444;
+
+/* Background */
+
+--background:#F8FAFC;
+--surface:#FFFFFF;
+--surface-light:#F1F5F9;
+
+/* Text */
+
+--text-primary:#0F172A;
+--text-secondary:#475569;
+--text-light:#94A3B8;
+
+/* Border */
+
+--border:#E2E8F0;
+
+/* Status */
+
+--success:#16A34A;
+--warning:#F59E0B;
+--error:#DC2626;
+
+/* Radius */
+
+--radius-small:8px;
+--radius-medium:14px;
+--radius-large:20px;
+--radius-xl:30px;
+
+/* Shadows */
+
+--shadow-small:0 2px 8px rgba(0,0,0,.08);
+
+--shadow-medium:0 8px 20px rgba(0,0,0,.12);
+
+--shadow-large:0 15px 40px rgba(0,0,0,.15);
+
+/* Fonts */
+
+--font-family:
+
+"Segoe UI",
+
+Roboto,
+
+Arial,
+
+sans-serif;
+
+--font-small:14px;
+--font-normal:16px;
+--font-medium:18px;
+--font-large:22px;
+--font-title:28px;
+--font-display:36px;
+
+/* Spacing */
+
+--space-xs:4px;
+--space-sm:8px;
+--space-md:16px;
+--space-lg:24px;
+--space-xl:32px;
+
+/* Animation */
+
+--transition-fast:.25s;
+
+--transition-normal:.35s;
+
+}
+
+/* ==========================================
+   Dark Theme
+========================================== */
+
+body.dark{
+
+--background:#0F172A;
+
+--surface:#1E293B;
+
+--surface-light:#334155;
+
+--text-primary:#F8FAFC;
+
+--text-secondary:#CBD5E1;
+
+--text-light:#94A3B8;
+
+--border:#475569;
+
+}
+
+/* ==========================================
+   Global
+========================================== */
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+background:var(--background);
+
+color:var(--text-primary);
+
+font-family:var(--font-family);
+
+font-size:var(--font-normal);
+
+line-height:1.6;
+
+transition:
+
+background var(--transition-normal),
+
+color var(--transition-normal);
+
+}
+
+/* Links */
+
+a{
+
+color:var(--primary);
+
+text-decoration:none;
+
+}
+
+a:hover{
+
+text-decoration:underline;
+
+}
+
+/* Buttons */
+
+button{
+
+cursor:pointer;
+
+font-family:inherit;
+
+transition:all var(--transition-fast);
+
+}
+
+button:active{
+
+transform:scale(.98);
+
+}
+
+/* Images */
+
+img{
+
+max-width:100%;
+
+display:block;
+
+}
+
+/* Lists */
+
+ul{
+
+list-style:none;
+
+}
+
+/* Inputs */
+
+input,
+
+textarea,
+
+select{
+
+font-family:inherit;
+
+font-size:var(--font-normal);
+
+outline:none;
+
+}
+
+/* Utility Classes */
+
+.hidden{
+
+display:none !important;
+
+}
+
+.text-center{
+
+text-align:center;
+
+}
+
+.shadow{
+
+box-shadow:var(--shadow-medium);
+
+}
+
+.rounded{
+
+border-radius:var(--radius-large);
+
+}
