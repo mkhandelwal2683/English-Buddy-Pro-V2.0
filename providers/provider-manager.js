@@ -1,3 +1,4 @@
+
 /* ==========================================
    Provider Manager
 ========================================== */
@@ -6,7 +7,7 @@ const ProviderManager = {
 
     provider: OpenRouterProvider,
 
-    async ask(message) {
+    async ask(message, mode = "chat") {
 
         if (!Internet.isOnline()) {
 
@@ -14,7 +15,7 @@ const ProviderManager = {
 
         }
 
-        return await this.provider.ask(message);
+        return await this.provider.ask(message, mode);
 
     }
 
