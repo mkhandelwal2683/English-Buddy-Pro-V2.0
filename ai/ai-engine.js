@@ -87,11 +87,15 @@ class AIEngine {
 
             default:
 
-                response =
-                    "Hello!\n\n" +
-                    "I am English Buddy AI.\n\n" +
-                    "This is currently running in MOCK mode.\n\n" +
-                    "Soon I will answer real English questions.";
+                const AI = {
+
+    async ask(message) {
+
+        return await ProviderManager.ask(message);
+
+    }
+
+};
 
         }
 
