@@ -18,7 +18,7 @@ const AI_CONFIG = {
 
     model: "meta-llama/llama-3.1-8b-instruct:free",
 
-    apiKey: " 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"
+    apiKey: " "
 
 },
 
