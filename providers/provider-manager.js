@@ -4,7 +4,7 @@
 
 const ProviderManager = {
 
-    provider: MockProvider,
+    provider: OpenRouterProvider,
 
     async ask(message) {
 
