@@ -43,11 +43,11 @@ const OpenRouterProvider = {
 
         } catch (error) {
 
-            console.error("Provider Error:", error);
+    console.error("Provider Error:", error);
 
-            return "❌ Unable to connect to English Buddy AI.";
+    return "❌ " + error.message;
 
-        }
+}
 
     }
 
