@@ -8,13 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const navButtons = document.querySelectorAll(".navButton");
 
     const pages = {
-        Home: document.getElementById("homePage"),
-        Learn: document.getElementById("lessonsPage"),
-        Speak: document.getElementById("speakPage"),
-        Quiz: document.getElementById("quizPage"),
-        Profile: document.getElementById("profilePage")
-    };
 
+    Home: document.getElementById("homePage"),
+
+    Learn: document.getElementById("lessonsPage"),
+
+    Speak: document.getElementById("speakPage"),
+
+    Quiz: document.getElementById("quizPage"),
+
+    Profile: document.getElementById("profilePage"),
+
+    AI: document.getElementById("aiPage")
+
+};
     function hideAllPages() {
 
         Object.values(pages).forEach(page => {
@@ -56,6 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const pageName = button.innerText.trim().split("\n").pop();
 
             showPage(pageName);
+           <button class="navButton">
+
+🤖
+
+<br>
+
+AI
+
+</button>
 
         });
 
