@@ -1,1 +1,100 @@
 
+/* ==========================================
+   English Buddy Pro v2.1
+   AI Chat Controller
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const sendButton = document.getElementById("sendButton");
+    const voiceButton = document.getElementById("voiceButton");
+    const chatInput = document.getElementById("chatInput");
+
+    if (sendButton) {
+
+        sendButton.addEventListener("click", sendMessage);
+
+    }
+
+    if (chatInput) {
+
+        chatInput.addEventListener("keypress", (event) => {
+
+            if (event.key === "Enter") {
+
+                sendMessage();
+
+            }
+
+        });
+
+    }
+
+    if (voiceButton) {
+
+        voiceButton.addEventListener("click", () => {
+
+            Speech.listen((text) => {
+
+                chatInput.value = text;
+
+            });
+
+        });
+
+    }
+
+});
+
+async function sendMessage() {
+
+    const input = document.getElementById("chatInput");
+    const container = document.getElementById("chatContainer");
+
+    if (!input || !container) return;
+
+    const message = input.value.trim();
+
+    if (message === "") return;
+
+    addUserMessage(message);
+
+    input.value = "";
+
+    const reply = await AI.ask(message);
+
+    addAIMessage(reply);
+
+}
+
+function addUserMessage(text) {
+
+    const container = document.getElementById("chatContainer");
+
+    const div = document.createElement("div");
+
+    div.className = "userMessage";
+
+    div.textContent = text;
+
+    container.appendChild(div);
+
+    container.scrollTop = container.scrollHeight;
+
+}
+
+function addAIMessage(text) {
+
+    const container = document.getElementById("chatContainer");
+
+    const div = document.createElement("div");
+
+    div.className = "aiMessage";
+
+    div.textContent = text;
+
+    container.appendChild(div);
+
+    container.scrollTop = container.scrollHeight;
+
+}
