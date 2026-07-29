@@ -3,6 +3,30 @@
    English Buddy Pro v2.1
    AI Chat Controller
 ========================================== */
+let currentMode = "chat";
+/* -----------------------------
+   Learning Mode Selection
+------------------------------ */
+
+const modeButtons = document.querySelectorAll(".modeButton");
+
+modeButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        modeButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        currentMode = button.dataset.mode;
+
+        console.log("Current Mode:", currentMode);
+
+    });
+
+});
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -61,7 +85,10 @@ async function sendMessage() {
 
     input.value = "";
 
-    const reply = await AI.ask(message);
+    const reply = await AI.ask(
+    message,
+    currentMode
+);
 
     addAIMessage(reply);
 
