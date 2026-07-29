@@ -54,14 +54,21 @@ class SpeechService {
 UIFeedback.showInfo(
     "🎤 Listening... Please speak now."
 );
+       let speechDetected = false;
+
+UIFeedback.showInfo(
+    "🎤 Listening... Please speak now."
+);
+
+this.recognition.start();
        
-        this.recognition.start();
 
         this.recognition.onresult = (event) => {
 
             const text =
                 event.results[0][0].transcript;
-
+speechDetected = true;
+           
            UIFeedback.showSuccess(
     "Speech captured"
 );
@@ -69,7 +76,17 @@ UIFeedback.showInfo(
             callback(text);
 
         };
+this.recognition.onend = () => {
 
+    if (!speechDetected) {
+
+        UIFeedback.showInfo(
+            "I didn't hear anything. Please try again."
+        );
+
+    }
+
+};
         this.recognition.onerror = (event) => {
 
     console.error(
