@@ -72,6 +72,3 @@ class UIFeedback {
     }
 
 }
-window.addEventListener("load", () => {
-    UIFeedback.showSuccess("English Buddy Pro Ready!");
-});
