@@ -4,6 +4,7 @@
    AI Chat Controller
 ========================================== */
 let currentMode = "chat";
+let isSending = false;
 /* -----------------------------
    Learning Mode Selection
 ------------------------------ */
@@ -77,20 +78,75 @@ async function sendMessage() {
 
     if (!input || !container) return;
 
+   if (isSending) {
+
+    UIFeedback.showInfo(
+        "Please wait for the current response."
+    );
+
+    return;
+
+   }
+   
     const message = input.value.trim();
 
     if (message === "") return;
 
     addUserMessage(message);
 
-    input.value = "";
+input.value = "";
+
+const sendButton =
+    document.getElementById("sendButton");
+
+try {
+
+    isSending = true;
+
+    if (sendButton) {
+
+        sendButton.disabled = true;
+
+    }
+
+    UIFeedback.showInfo(
+        "🤖 English Buddy is thinking..."
+    );
+
+    UIFeedback.showLoading(
+        "Thinking..."
+    );
 
     const reply = await AI.ask(
-    message,
-    currentMode
-);
+        message,
+        currentMode
+    );
+
+    UIFeedback.hideLoading();
 
     addAIMessage(reply);
+
+} catch (error) {
+
+    console.error(error);
+
+    UIFeedback.hideLoading();
+
+    UIFeedback.showError(
+        "Unable to get AI response."
+    );
+
+} finally {
+
+    isSending = false;
+
+    if (sendButton) {
+
+        sendButton.disabled = false;
+
+    }
+
+}
 
 }
 
