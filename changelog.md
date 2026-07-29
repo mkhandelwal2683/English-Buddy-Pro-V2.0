@@ -1,34 +1,26 @@
-
 # Changelog
 
----
-
-## Sprint 1
-
-### Added
-
-- Dashboard
-- Navigation
-- Responsive UI
-- GitHub Pages Deployment
-- Splash Screen
-- Dark Mode
-- Progress Tracking
+All notable changes to English Buddy Pro will be documented in this file.
 
 ---
 
-## Sprint 2.1
+## [v2.2.1] - In Progress
 
 ### Added
+- Project documentation
+- project.md
+- ai_context.md
 
-- AI Configuration
-- AI Engine
-- Prompt Manager
+### Changed
+- Development methodology shifted to sprint-based development.
+- Standardized engineering workflow.
+- Established long-term product architecture.
 
-### Planned
+### Fixed
+- None
 
-- Network Layer
-- AI Chat
-- Translation Engine
-- Grammar Engine
-- Vocabulary Engine
+### Known Issues
+- Worker to OpenRouter production integration pending.
+
+### Status
+🟡 In Progress
