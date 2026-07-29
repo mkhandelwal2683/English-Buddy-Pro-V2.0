@@ -43,12 +43,18 @@ class SpeechService {
 
         if (!this.recognition) {
 
-            alert("Speech Recognition is not supported on this browser.");
+    UIFeedback.showError(
+        "Speech recognition is not supported on this device."
+    );
 
-            return;
+    return;
 
-        }
-
+}
+       
+UIFeedback.showInfo(
+    "🎤 Listening... Please speak now."
+);
+       
         this.recognition.start();
 
         this.recognition.onresult = (event) => {
@@ -56,15 +62,56 @@ class SpeechService {
             const text =
                 event.results[0][0].transcript;
 
+           UIFeedback.showSuccess(
+    "Speech captured"
+);
+           
             callback(text);
 
         };
 
         this.recognition.onerror = (event) => {
 
-            console.error("Speech Error:", event.error);
+    console.error(
+        "Speech Error:",
+        event.error
+    );
 
-        };
+    switch (event.error) {
+
+        case "no-speech":
+
+            UIFeedback.showInfo(
+                "I didn't hear anything. Please try again."
+            );
+
+            break;
+
+        case "not-allowed":
+
+            UIFeedback.showError(
+                "Please allow microphone access."
+            );
+
+            break;
+
+        case "audio-capture":
+
+            UIFeedback.showError(
+                "Microphone not detected."
+            );
+
+            break;
+
+        default:
+
+            UIFeedback.showError(
+                "Speech recognition failed."
+            );
+
+    }
+
+};
 
     }
 
