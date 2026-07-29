@@ -1,13 +1,34 @@
 /* ==========================================
-   English Buddy Pro v2.1
-   Prompt Manager
+   English Buddy Pro v2.3.0
+   AI Teacher Prompt Manager
 ========================================== */
 
 class PromptManager {
 
+    static teacherIdentity() {
+
+        return `
+You are English Buddy, an AI English Teacher.
+
+Your mission is to help learners improve their English.
+
+Always:
+
+- Be friendly and encouraging.
+- Explain in simple English.
+- Use Hindi only when it helps understanding.
+- Teach instead of just answering.
+- Give examples whenever possible.
+- Encourage daily practice.
+- Never criticize the learner.
+- Always keep explanations easy to understand.
+`;
+
+    }
+
     static buildPrompt(mode, userInput) {
 
-        switch (mode) {
+        switch ((mode || "chat").toLowerCase()) {
 
             case "translation":
                 return this.translationPrompt(userInput);
@@ -38,15 +59,16 @@ class PromptManager {
     static chatPrompt(text) {
 
         return `
-You are English Buddy AI.
+${this.teacherIdentity()}
 
-Answer in simple English.
-
-If required,
-also explain in Hindi.
-
-User:
+User Message:
 ${text}
+
+Respond in simple English.
+
+If needed, provide a short Hindi explanation.
+
+Finish with one learning tip.
 `;
 
     }
@@ -58,20 +80,26 @@ ${text}
     static translationPrompt(text) {
 
         return `
-Translate between English and Hindi.
+${this.teacherIdentity()}
+
+Translate the following text between English and Hindi.
 
 Input:
 ${text}
 
-Return:
+Return exactly in this format:
 
-1. Translation
+🌍 Translation
 
-2. Pronunciation
+🔊 Pronunciation
 
-3. Grammar Pattern
+📘 Meaning
 
-4. Two Example Sentences
+💡 Grammar Note
+
+📝 Example Sentences (2)
+
+⭐ Learning Tip
 `;
 
     }
@@ -83,22 +111,28 @@ Return:
     static grammarPrompt(text) {
 
         return `
+${this.teacherIdentity()}
+
 Correct this sentence.
 
 Sentence:
 ${text}
 
-Return:
+Return exactly in this format:
 
-1. Correct Sentence
+❌ Original Sentence
 
-2. Mistakes
+✅ Correct Sentence
 
-3. Hindi Explanation
+🔍 Mistakes Found
 
-4. Easy Rule
+📘 Explanation
 
-5. One Practice Sentence
+💡 Grammar Rule
+
+📝 Practice Question
+
+⭐ Motivation
 `;
 
     }
@@ -110,28 +144,34 @@ Return:
     static vocabularyPrompt(word) {
 
         return `
-Explain this English word.
+${this.teacherIdentity()}
+
+Teach the following English word.
 
 Word:
 ${word}
 
-Return:
+Return exactly in this format:
 
-Meaning
+📚 Word
 
-Hindi Meaning
+📖 Meaning
 
-Pronunciation
+🇮🇳 Hindi Meaning
 
-Part of Speech
+🔊 Pronunciation
 
-Synonyms
+🧩 Part of Speech
 
-Antonyms
+🤝 Synonyms
 
-Five Example Sentences
+↔️ Antonyms
 
-Common Mistakes
+📝 Example Sentences (3)
+
+⚠️ Common Mistakes
+
+⭐ Memory Tip
 `;
 
     }
@@ -143,14 +183,18 @@ Common Mistakes
     static conversationPrompt(text) {
 
         return `
-You are a friendly English speaking tutor.
+${this.teacherIdentity()}
 
 Continue the conversation naturally.
 
-Correct mistakes politely.
-
 User:
 ${text}
+
+Correct mistakes politely.
+
+Keep the conversation engaging.
+
+End with one follow-up question.
 `;
 
     }
@@ -162,18 +206,22 @@ ${text}
     static writingPrompt(text) {
 
         return `
-Help the learner write professional English.
+${this.teacherIdentity()}
+
+Help improve the learner's writing.
 
 Task:
 ${text}
 
 Return:
 
-Final Draft
+✍️ Improved Version
 
-Grammar Tips
+📘 Grammar Suggestions
 
-Vocabulary Suggestions
+💬 Better Vocabulary
+
+⭐ Writing Tip
 `;
 
     }
