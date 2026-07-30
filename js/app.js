@@ -1,5 +1,5 @@
 /* ==========================================
-   English Buddy Pro v2.0
+   English Buddy Pro v2.4.1
    Main Application
 ========================================== */
 
@@ -25,7 +25,9 @@ function initializeApp() {
 
     setupDarkMode();
 
-    showToast("Welcome to English Buddy Pro!");
+    restoreAIMode();
+
+    showWelcomeMessage();
 
 }
 
@@ -59,13 +61,13 @@ function hideSplashScreen() {
 
 function loadUserProgress() {
 
-    const xp = localStorage.getItem("xp") || "0";
+    const xp = Storage.getXP();
 
-    const streak = localStorage.getItem("streak") || "0";
+    const streak = Storage.getStreak();
 
-    const lessons = localStorage.getItem("lessons") || "0";
+    const lessons = Storage.getLessonsCompleted();
 
-    const quiz = localStorage.getItem("quiz") || "0";
+    const quiz = Storage.getQuizScore();
 
     setText("xpValue", xp);
 
@@ -78,7 +80,7 @@ function loadUserProgress() {
 }
 
 /* ==========================================
-   Progress Bar
+   Daily Goal
 ========================================== */
 
 function updateProgressBar() {
@@ -89,7 +91,7 @@ function updateProgressBar() {
 
     if (!progress || !percent) return;
 
-    const value = Number(localStorage.getItem("dailyGoal")) || 0;
+    const value = Storage.load("dailyGoal", 0);
 
     progress.style.width = value + "%";
 
@@ -98,24 +100,46 @@ function updateProgressBar() {
 }
 
 /* ==========================================
-   Toast Message
+   Restore AI Mode
 ========================================== */
 
-function showToast(message) {
+function restoreAIMode() {
 
-    const toast = document.getElementById("toastMessage");
+    const mode = Storage.getCurrentMode();
 
-    if (!toast) return;
+    const buttons = document.querySelectorAll(".modeButton");
 
-    toast.textContent = message;
+    buttons.forEach(button => {
 
-    toast.classList.add("show");
+        button.classList.remove("active");
 
-    setTimeout(() => {
+        if (button.dataset.mode === mode) {
 
-        toast.classList.remove("show");
+            button.classList.add("active");
 
-    }, 2500);
+        }
+
+    });
+
+    if (typeof currentMode !== "undefined") {
+
+        currentMode = mode;
+
+    }
+
+}
+
+/* ==========================================
+   Welcome Message
+========================================== */
+
+function showWelcomeMessage() {
+
+    UIFeedback.showSuccess(
+
+        "Welcome back to English Buddy Pro!"
+
+    );
 
 }
 
@@ -129,9 +153,9 @@ function setupDarkMode() {
 
     if (!toggle) return;
 
-    const saved = localStorage.getItem("darkMode");
+    const saved = Storage.load("darkMode", false);
 
-    if (saved === "true") {
+    if (saved) {
 
         document.body.classList.add("dark");
 
@@ -143,7 +167,7 @@ function setupDarkMode() {
 
         document.body.classList.toggle("dark");
 
-        localStorage.setItem(
+        Storage.save(
 
             "darkMode",
 
