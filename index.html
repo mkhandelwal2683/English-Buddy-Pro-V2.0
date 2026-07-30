@@ -804,14 +804,15 @@ Daily Goal
      AI Chat Page
 ========================================== -->
 
-<section id="aiPage" class="page">
+<section id="aiPage" class="pageSection">
 
     <div class="pageHeader">
 
         <h2>🤖 AI Tutor</h2>
 
-        <p>Your personal English learning assistant</p>
-
+        <p>
+Practice Grammar, Translation, Vocabulary and Conversation with AI.
+</p>
     </div>
 <!-- AI Learning Modes -->
 
@@ -869,10 +870,11 @@ Daily Goal
     <div class="chatInputArea">
 
         <input
-            id="chatInput"
-            type="text"
-            placeholder="Type your question..." />
-
+    id="chatInput"
+    type="text"
+    maxlength="500"
+    autocomplete="off"
+    placeholder="Ask in English or Hindi..." />
         <button id="sendButton">
 
             Send
