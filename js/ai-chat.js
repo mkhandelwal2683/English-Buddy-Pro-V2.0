@@ -25,6 +25,9 @@ modeButtons.forEach((button) => {
 
         console.log("Current Mode:", currentMode);
 
+UIFeedback.showSuccess(
+    button.textContent.trim() + " Mode Activated"
+);
     });
 
 });
@@ -161,6 +164,35 @@ function addUserMessage(text) {
     div.textContent = text;
 
     container.appendChild(div);
+   div.animate(
+
+    [
+
+        {
+
+            opacity: 0,
+
+            transform: "translateY(15px)"
+
+        },
+
+        {
+
+            opacity: 1,
+
+            transform: "translateY(0)"
+
+        }
+
+    ],
+
+    {
+
+        duration: 250
+
+    }
+
+);
 
     container.scrollTop = container.scrollHeight;
 
@@ -174,10 +206,39 @@ function addAIMessage(text) {
 
     div.className = "aiMessage";
 
-    div.textContent = text;
-
+    div.innerHTML =
+    text.replace(/\n/g, "<br>");
     container.appendChild(div);
+div.animate(
 
+    [
+
+        {
+
+            opacity: 0,
+
+            transform: "translateY(15px)"
+
+        },
+
+        {
+
+            opacity: 1,
+
+            transform: "translateY(0)"
+
+        }
+
+    ],
+
+    {
+
+        duration: 250
+
+    }
+
+);
+   
     container.scrollTop = container.scrollHeight;
 
 }
