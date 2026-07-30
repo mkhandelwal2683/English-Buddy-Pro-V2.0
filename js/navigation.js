@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             button.classList.add("active");
 
-            const pageName = button.innerText.trim().split("\n").pop();
-
+            const pageName = button.dataset.page;
+           
             showPage(pageName);
          
 
