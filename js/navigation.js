@@ -63,15 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const pageName = button.innerText.trim().split("\n").pop();
 
             showPage(pageName);
-           <button class="navButton">
-
-🤖
-
-<br>
-
-AI
-
-</button>
+         
 
         });
 
