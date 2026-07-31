@@ -950,3 +950,19 @@ transform:translateY(0);
 }
 
 }
+/* ==========================================
+   Page Navigation
+========================================== */
+
+.pageSection{
+    display:none;
+    padding:20px;
+}
+
+.pageSection.active{
+    display:block;
+}
+
+#homePage{
+    display:block;
+}
