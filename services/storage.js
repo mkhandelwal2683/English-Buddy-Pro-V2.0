@@ -370,6 +370,7 @@ class StorageService {
 
         this.remove(this.KEYS.CHAT_HISTORY);
 
+        this.remove("completedLessons");
     }
 
 }
