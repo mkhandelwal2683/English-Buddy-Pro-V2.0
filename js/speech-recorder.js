@@ -42,19 +42,53 @@ seconds: 0,
             ).textContent = text;
 
         };
+document.getElementById(
+    "recordingStatus"
+).textContent = "🔴 Listening...";
 
+this.seconds = 0;
+
+document.getElementById(
+    "recordingTimer"
+).textContent = "00:00";
+
+this.timer = setInterval(() => {
+
+    this.seconds++;
+
+    const mins = String(
+        Math.floor(this.seconds / 60)
+    ).padStart(2, "0");
+
+    const secs = String(
+        this.seconds % 60
+    ).padStart(2, "0");
+
+    document.getElementById(
+        "recordingTimer"
+    ).textContent = `${mins}:${secs}`;
+
+}, 1000);
+       
         this.recognition.start();
 
     },
 
     stop() {
 
-        if (this.recognition) {
+    if (this.recognition) {
 
-            this.recognition.stop();
-
-        }
+        this.recognition.stop();
 
     }
+
+    clearInterval(this.timer);
+
+    document.getElementById(
+        "recordingStatus"
+    ).textContent =
+        "🟢 Recording Complete";
+
+}
 
 };
