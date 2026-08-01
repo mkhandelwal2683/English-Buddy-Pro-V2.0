@@ -6,6 +6,10 @@ const SpeechRecorder = {
 
     recognition: null,
 
+timer: null,
+
+seconds: 0,
+
     start() {
 
         const SpeechRecognition =
