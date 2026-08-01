@@ -92,8 +92,16 @@ ${LessonProgress.isCompleted(lesson.id)
                     <p>${item.hindi}</p>
 
                     <small>
-                        🔊 ${item.pronunciation}
-                    </small>
+    🔊 ${item.pronunciation}
+</small>
+
+<br><br>
+
+<button
+    class="listenButton"
+    data-text="${item.english}">
+    🔊 Listen
+</button>
 
                 </div>
 
@@ -127,6 +135,32 @@ ${LessonProgress.isCompleted(lesson.id)
 
             });
 
+       document
+    .querySelectorAll(".listenButton")
+    .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const text = button.dataset.text;
+
+            if (
+                typeof SpeechService !== "undefined" &&
+                typeof SpeechService.speak === "function"
+            ) {
+
+                SpeechService.speak(text);
+
+            } else {
+
+                speechSynthesis.speak(
+                    new SpeechSynthesisUtterance(text)
+                );
+
+            }
+
+        });
+
+    });
     }
 
 };
