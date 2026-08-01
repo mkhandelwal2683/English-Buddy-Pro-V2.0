@@ -10,6 +10,8 @@ timer: null,
 
 seconds: 0,
 
+isRecording: false,
+
     start() {
 
         const SpeechRecognition =
@@ -30,18 +32,28 @@ seconds: 0,
 
         this.recognition.lang = "en-IN";
         this.recognition.interimResults = true;
-        this.recognition.continuous = false;
+        this.recognition.continuous = true;
 
         this.recognition.onresult = (event) => {
 
             const text =
                 event.results[0][0].transcript;
 
-            document.getElementById(
-                "speechResult"
-            ).textContent = text;
+            const result = document.getElementById("speechResult");
+
+result.textContent += " " + text;
 
         };
+       this.recognition.onend = () => {
+
+    if (this.isRecording) {
+
+        this.recognition.start();
+
+    }
+
+};
+       
 document.getElementById(
     "recordingStatus"
 ).textContent = "🔴 Listening...";
@@ -75,10 +87,13 @@ this.timer = setInterval(() => {
     },
 
     stop() {
-
+       
+this.isRecording = false;
     if (this.recognition) {
 
-        this.recognition.stop();
+        this.isRecording = true;
+
+this.recognition.start();
 
     }
 
