@@ -112,7 +112,8 @@ this.isStoppedByUser = false;
     },
 
     stop() {
-
+this.isStoppedByUser = true;
+       
         if (this.recognition) {
 
             this.recognition.stop();
