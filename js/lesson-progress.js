@@ -54,21 +54,17 @@ const LessonProgress = {
 
     addXP(amount) {
 
-        let xp = Storage.getXP();
+    const xp = Storage.addXP(amount);
 
-        xp += amount;
+    const element = document.getElementById("xpValue");
 
-        Storage.save("xp", xp);
+    if (element) {
 
-        const element = document.getElementById("xpValue");
+        element.textContent = xp;
 
-        if (element) {
+    }
 
-            element.textContent = xp;
-
-        }
-
-    },
+}
 
     incrementLessons() {
 
