@@ -22,7 +22,11 @@ const LessonRenderer = {
             card.innerHTML = `
                 <div class="lessonHeader">
                     <h3>${lesson.title}</h3>
-                    <span>${lesson.category}</span>
+                    <span>
+${LessonProgress.isCompleted(lesson.id)
+    ? "✅ Completed"
+    : lesson.category}
+</span>
                 </div>
 
                 <p>${lesson.description}</p>
