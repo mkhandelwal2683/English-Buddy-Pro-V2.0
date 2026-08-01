@@ -64,9 +64,9 @@ const LessonProgress = {
 
     }
 
-}
+},
 
-    incrementLessons() {
+incrementLessons() {
 
     const lessons = Storage.addLesson();
 
