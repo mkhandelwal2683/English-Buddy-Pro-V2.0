@@ -10,9 +10,12 @@ const SpeechRecorder = {
     timer: null,
 
     seconds: 0,
+   isStoppedByUser: false,
+   
 
     start() {
-
+this.isStoppedByUser = false;
+       
         const SpeechRecognition =
             window.SpeechRecognition ||
             window.webkitSpeechRecognition;
@@ -89,11 +92,19 @@ const SpeechRecorder = {
 
         this.recognition.onend = () => {
 
-            clearInterval(this.timer);
+    if (this.isStoppedByUser) {
 
-            document.getElementById("recordingStatus").textContent =
-                "🟢 Recording Complete";
+        clearInterval(this.timer);
 
+        document.getElementById("recordingStatus").textContent =
+            "🟢 Recording Complete";
+
+    } else {
+
+        document.getElementById("recordingStatus").textContent =
+            "⏸ Waiting... Continue speaking or press Stop";
+
+    }
         };
 
         this.recognition.start();
