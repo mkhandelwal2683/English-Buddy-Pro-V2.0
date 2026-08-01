@@ -68,23 +68,15 @@ const LessonProgress = {
 
     incrementLessons() {
 
-        let lessons = Storage.getLessonsCompleted();
+    const lessons = Storage.addLesson();
 
-        lessons++;
+    const element = document.getElementById("lessonValue");
 
-        Storage.save(
-            "lessonsCompleted",
-            lessons
-        );
+    if (element) {
 
-        const element = document.getElementById("lessonValue");
-
-        if (element) {
-
-            element.textContent = lessons;
-
-        }
+        element.textContent = lessons;
 
     }
 
+}
 };
