@@ -1,4 +1,5 @@
 /* ==========================================
+   English Buddy Pro v4.1
    Speech Recorder
 ========================================== */
 
@@ -6,11 +7,9 @@ const SpeechRecorder = {
 
     recognition: null,
 
-timer: null,
+    timer: null,
 
-seconds: 0,
-
-isRecording: false,
+    seconds: 0,
 
     start() {
 
@@ -32,78 +31,88 @@ isRecording: false,
 
         this.recognition.lang = "en-IN";
         this.recognition.interimResults = true;
-        this.recognition.continuous = true;
+        this.recognition.continuous = false;
+
+        document.getElementById("recordingStatus").textContent =
+            "🔴 Listening...";
+
+        document.getElementById("speechResult").textContent = "";
+
+        this.seconds = 0;
+
+        document.getElementById("recordingTimer").textContent =
+            "00:00";
+
+        clearInterval(this.timer);
+
+        this.timer = setInterval(() => {
+
+            this.seconds++;
+
+            const mins = String(
+                Math.floor(this.seconds / 60)
+            ).padStart(2, "0");
+
+            const secs = String(
+                this.seconds % 60
+            ).padStart(2, "0");
+
+            document.getElementById("recordingTimer").textContent =
+                `${mins}:${secs}`;
+
+        }, 1000);
 
         this.recognition.onresult = (event) => {
 
-            const text =
-                event.results[0][0].transcript;
+            let transcript = "";
 
-            const result = document.getElementById("speechResult");
+            for (
+                let i = event.resultIndex;
+                i < event.results.length;
+                i++
+            ) {
 
-result.textContent += " " + text;
+                transcript += event.results[i][0].transcript;
+
+            }
+
+            document.getElementById("speechResult").textContent =
+                transcript;
 
         };
-       this.recognition.onend = () => {
 
-    if (this.isRecording) {
+        this.recognition.onerror = (event) => {
 
-        this.recognition.start();
+            console.log("Speech Error:", event.error);
 
-    }
+        };
 
-};
-       
-document.getElementById(
-    "recordingStatus"
-).textContent = "🔴 Listening...";
+        this.recognition.onend = () => {
 
-this.seconds = 0;
+            clearInterval(this.timer);
 
-document.getElementById(
-    "recordingTimer"
-).textContent = "00:00";
+            document.getElementById("recordingStatus").textContent =
+                "🟢 Recording Complete";
 
-this.timer = setInterval(() => {
+        };
 
-    this.seconds++;
-
-    const mins = String(
-        Math.floor(this.seconds / 60)
-    ).padStart(2, "0");
-
-    const secs = String(
-        this.seconds % 60
-    ).padStart(2, "0");
-
-    document.getElementById(
-        "recordingTimer"
-    ).textContent = `${mins}:${secs}`;
-
-}, 1000);
-       
         this.recognition.start();
 
     },
 
     stop() {
-       
-this.isRecording = false;
-    if (this.recognition) {
 
-        this.isRecording = true;
+        if (this.recognition) {
 
-this.recognition.start();
+            this.recognition.stop();
+
+        }
+
+        clearInterval(this.timer);
+
+        document.getElementById("recordingStatus").textContent =
+            "🟢 Recording Complete";
 
     }
-
-    clearInterval(this.timer);
-
-    document.getElementById(
-        "recordingStatus"
-    ).textContent =
-        "🟢 Recording Complete";
-
-}
 
 };
