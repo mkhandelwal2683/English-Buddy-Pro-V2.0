@@ -67,22 +67,37 @@ this.isStoppedByUser = false;
 
         this.recognition.onresult = (event) => {
 
-            let transcript = "";
+    let transcript = "";
 
-            for (
-                let i = event.resultIndex;
-                i < event.results.length;
-                i++
-            ) {
+    for (
+        let i = event.resultIndex;
+        i < event.results.length;
+        i++
+    ) {
 
-                transcript += event.results[i][0].transcript;
+        transcript += event.results[i][0].transcript;
 
-            }
+    }
 
-            document.getElementById("speechResult").textContent =
-                transcript;
+    const result = document.getElementById("speechResult");
 
-        };
+    const previous = result.textContent.trim();
+
+    if (
+        previous === "" ||
+        previous === "Your speech will appear here..."
+    ) {
+
+        result.textContent = transcript;
+
+    } else {
+
+        result.textContent =
+            previous + " " + transcript;
+
+    }
+
+};
 
         this.recognition.onerror = (event) => {
 
