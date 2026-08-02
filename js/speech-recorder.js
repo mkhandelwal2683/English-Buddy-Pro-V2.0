@@ -1,6 +1,6 @@
 /* ==========================================
-   English Buddy Pro v4.1
-   Speech Recorder
+   English Buddy Pro v5.0
+   Production Speech Recorder
 ========================================== */
 
 const SpeechRecorder = {
@@ -10,36 +10,19 @@ const SpeechRecorder = {
     timer: null,
 
     seconds: 0,
-   isStoppedByUser: false,
-   
+
+    isStoppedByUser: false,
+
+    fullTranscript: "",
 
     start() {
-this.isStoppedByUser = false;
-       
-        const SpeechRecognition =
-            window.SpeechRecognition ||
-            window.webkitSpeechRecognition;
 
-        if (!SpeechRecognition) {
-
-            UIFeedback.showError(
-                "Speech Recognition is not supported."
-            );
-
-            return;
-
-        }
-
-        this.recognition = new SpeechRecognition();
-
-        this.recognition.lang = "en-IN";
-        this.recognition.interimResults = true;
-        this.recognition.continuous = true;
-
-        document.getElementById("recordingStatus").textContent =
-            "🔴 Listening...";
+        this.isStoppedByUser = false;
+        this.fullTranscript = "";
 
         document.getElementById("speechResult").textContent = "";
+        document.getElementById("recordingStatus").textContent =
+            "🔴 Listening...";
 
         this.seconds = 0;
 
@@ -65,85 +48,111 @@ this.isStoppedByUser = false;
 
         }, 1000);
 
+        this.startRecognition();
+
+    },
+
+    startRecognition() {
+
+        const SpeechRecognition =
+            window.SpeechRecognition ||
+            window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+
+            UIFeedback.showError(
+                "Speech Recognition is not supported."
+            );
+
+            return;
+
+        }
+
+        this.recognition = new SpeechRecognition();
+
+        this.recognition.lang = "en-IN";
+
+        this.recognition.interimResults = false;
+
+        this.recognition.continuous = false;
+
+        this.recognition.maxAlternatives = 1;
+
         this.recognition.onresult = (event) => {
 
-    let transcript = "";
+            const transcript =
+                event.results[0][0].transcript.trim();
 
-    for (
-        let i = event.resultIndex;
-        i < event.results.length;
-        i++
-    ) {
+            if (
+                transcript &&
+                !this.fullTranscript.endsWith(transcript)
+            ) {
 
-        transcript += event.results[i][0].transcript;
+                if (this.fullTranscript.length > 0) {
 
-    }
+                    this.fullTranscript += " ";
 
-    const result = document.getElementById("speechResult");
+                }
 
-    const previous = result.textContent.trim();
+                this.fullTranscript += transcript;
 
-    if (
-        previous === "" ||
-        previous === "Your speech will appear here..."
-    ) {
+            }
 
-        result.textContent = transcript;
+            document.getElementById(
+                "speechResult"
+            ).textContent = this.fullTranscript;
 
-    } else {
-
-        result.textContent =
-            previous + " " + transcript;
-
-    }
-
-};
+        };
 
         this.recognition.onerror = (event) => {
 
-            console.log("Speech Error:", event.error);
+            console.log(
+                "Speech Error:",
+                event.error
+            );
 
         };
 
         this.recognition.onend = () => {
 
-    if (this.isStoppedByUser) {
+            if (this.isStoppedByUser) {
 
-        clearInterval(this.timer);
+                clearInterval(this.timer);
 
-        document.getElementById("recordingStatus").textContent =
-            "🟢 Recording Complete";
+                document.getElementById(
+                    "recordingStatus"
+                ).textContent =
+                    "🟢 Recording Complete";
 
-        return;
+                return;
 
-    }
+            }
 
-    document.getElementById("recordingStatus").textContent =
-        "🎤 Listening...";
+            document.getElementById(
+                "recordingStatus"
+            ).textContent =
+                "🎤 Listening...";
 
-    setTimeout(() => {
+            setTimeout(() => {
 
-        try {
+                if (!this.isStoppedByUser) {
 
-            this.recognition.start();
+                    this.startRecognition();
 
-        } catch (e) {
+                }
 
-            console.log("Restart skipped:", e);
+            }, 300);
 
-        }
-
-    }, 300);
-
-};
+        };
 
         this.recognition.start();
 
     },
 
     stop() {
-this.isStoppedByUser = true;
-       
+
+        this.isStoppedByUser = true;
+
         if (this.recognition) {
 
             this.recognition.stop();
@@ -152,7 +161,9 @@ this.isStoppedByUser = true;
 
         clearInterval(this.timer);
 
-        document.getElementById("recordingStatus").textContent =
+        document.getElementById(
+            "recordingStatus"
+        ).textContent =
             "🟢 Recording Complete";
 
     }
