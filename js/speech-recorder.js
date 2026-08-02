@@ -165,7 +165,14 @@ const SpeechRecorder = {
             "recordingStatus"
         ).textContent =
             "🟢 Recording Complete";
+SpeechHistory.save(this.fullTranscript);
 
+if (typeof Speak !== "undefined") {
+
+    Speak.loadHistory();
+
+}
+       
     }
 
 };
