@@ -34,7 +34,7 @@ this.isStoppedByUser = false;
 
         this.recognition.lang = "en-IN";
         this.recognition.interimResults = true;
-        this.recognition.continuous = false;
+        this.recognition.continuous = true;
 
         document.getElementById("recordingStatus").textContent =
             "🔴 Listening...";
@@ -99,13 +99,28 @@ this.isStoppedByUser = false;
         document.getElementById("recordingStatus").textContent =
             "🟢 Recording Complete";
 
-    } else {
-
-        document.getElementById("recordingStatus").textContent =
-            "⏸ Waiting... Continue speaking or press Stop";
+        return;
 
     }
-        };
+
+    document.getElementById("recordingStatus").textContent =
+        "🎤 Listening...";
+
+    setTimeout(() => {
+
+        try {
+
+            this.recognition.start();
+
+        } catch (e) {
+
+            console.log("Restart skipped:", e);
+
+        }
+
+    }, 300);
+
+};
 
         this.recognition.start();
 
