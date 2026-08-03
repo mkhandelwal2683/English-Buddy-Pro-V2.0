@@ -128,10 +128,14 @@ if (result) {
 
 if (aiFeedback) {
 
+    const formattedFeedback = feedback
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\n/g, "<br>");
+
     aiFeedback.innerHTML =
         "<h3>🤖 AI Speaking Coach</h3>" +
-        "<div>" +
-        feedback.replace(/\n/g, "<br>") +
+        "<div class='aiFeedbackContent'>" +
+        formattedFeedback +
         "</div>";
 
 }
