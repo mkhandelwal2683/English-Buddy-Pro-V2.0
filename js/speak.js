@@ -88,7 +88,7 @@ const Speak = {
 
         container.innerHTML = html;
 
-    }
+    }, 
 async onSpeechCompleted(transcript) {
 
     if (!transcript || transcript.trim() === "") {
