@@ -118,15 +118,23 @@ Keep your response short, encouraging, and easy to understand.`;
         UIFeedback.hideLoading();
 
         const result = document.getElementById("speechResult");
+const aiFeedback = document.getElementById("aiSpeechFeedback");
 
-        if (result) {
+if (result) {
 
-            result.innerHTML =
-                transcript +
-                "<hr><strong>🤖 AI Speaking Coach</strong><br><br>" +
-                feedback.replace(/\n/g, "<br>");
+    result.textContent = transcript;
 
-        }
+}
+
+if (aiFeedback) {
+
+    aiFeedback.innerHTML =
+        "<h3>🤖 AI Speaking Coach</h3>" +
+        "<div>" +
+        feedback.replace(/\n/g, "<br>") +
+        "</div>";
+
+}
 
     } catch (error) {
 
