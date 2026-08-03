@@ -89,7 +89,59 @@ const Speak = {
         container.innerHTML = html;
 
     }
+async onSpeechCompleted(transcript) {
 
+    if (!transcript || transcript.trim() === "") {
+        return;
+    }
+
+    try {
+
+        UIFeedback.showLoading("Analyzing your speech...");
+
+        const prompt = `You are an English Speaking Coach.
+
+Student Speech:
+"${transcript}"
+
+Please provide:
+
+1. Grammar Correction
+2. Improved Sentence
+3. Pronunciation Tips
+4. Vocabulary Suggestions
+
+Keep your response short, encouraging, and easy to understand.`;
+
+        const feedback = await AI.ask(prompt, "speaking");
+
+        UIFeedback.hideLoading();
+
+        const result = document.getElementById("speechResult");
+
+        if (result) {
+
+            result.innerHTML =
+                transcript +
+                "<hr><strong>🤖 AI Speaking Coach</strong><br><br>" +
+                feedback.replace(/\n/g, "<br>");
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        UIFeedback.hideLoading();
+
+        UIFeedback.showError(
+            "Unable to analyze your speech."
+        );
+
+    }
+
+}
+   
 };
 
 document.addEventListener("DOMContentLoaded", () => {
