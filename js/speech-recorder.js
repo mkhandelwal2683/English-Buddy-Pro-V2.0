@@ -171,6 +171,12 @@ if (typeof Speak !== "undefined") {
 
     Speak.loadHistory();
 
+    if (typeof Speak.onSpeechCompleted === "function") {
+
+        Speak.onSpeechCompleted(this.fullTranscript);
+
+    }
+
 }
        
     }
