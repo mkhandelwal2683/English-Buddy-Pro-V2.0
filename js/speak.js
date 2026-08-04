@@ -130,23 +130,7 @@ if (aiFeedback) {
    Update User XP
 ========================================== */
 
-try {
-
-    if (
-        typeof LessonProgress !== "undefined" &&
-        typeof LessonProgress.addXP === "function"
-    ) {
-
-        const earnedXP = calculateXP(data.overallScore);
-
-LessonProgress.addXP(earnedXP);
-    }
-
-} catch (error) {
-
-    console.error("XP Update Failed:", error);
-
-}
+let earnedXP = 0;
        
 // Dynamic score colors
 const getScoreColor = (score) => {
@@ -228,6 +212,24 @@ const calculateXP = (score) => {
     return 2;
 
 };
+  earnedXP = calculateXP(data.overallScore);
+
+try {
+
+    if (
+        typeof LessonProgress !== "undefined" &&
+        typeof LessonProgress.addXP === "function"
+    ) {
+
+        LessonProgress.addXP(earnedXP);
+
+    }
+
+} catch (error) {
+
+    console.error("XP Update Failed:", error);
+
+}
        
         aiFeedback.innerHTML = `
 <h3>🤖 AI Speaking Coach</h3>
