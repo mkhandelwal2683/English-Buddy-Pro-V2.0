@@ -132,9 +132,17 @@ if (aiFeedback) {
 
 <div class="coachCard">
 
-    <h2 style="text-align:center;margin-bottom:20px;">
-        🏆 Overall Score: ${data.overallScore}/100
-    </h2>
+    <div class="scoreCircle">
+
+    <div class="scoreValue">
+        ${data.overallScore}
+    </div>
+
+    <div class="scoreText">
+        Overall Score
+    </div>
+
+</div>
 
     <div class="scoreRow">
         <div class="scoreHeader">
