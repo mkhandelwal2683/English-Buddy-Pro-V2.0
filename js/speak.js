@@ -99,22 +99,17 @@ async onSpeechCompleted(transcript) {
 
         UIFeedback.showLoading("Analyzing your speech...");
 
-        const prompt = `You are an English Speaking Coach.
+        // Build the AI prompt using PromptManager
+const prompt = PromptManager.buildPrompt(
+    "speaking",
+    transcript
+);
 
-Student Speech:
-"${transcript}"
-
-Please provide:
-
-1. Grammar Correction
-2. Improved Sentence
-3. Pronunciation Tips
-4. Vocabulary Suggestions
-
-Keep your response short, encouraging, and easy to understand.`;
-
-        const feedback = await AI.ask(prompt, "speaking");
-
+// Send to AI
+const feedback = await AI.ask(
+    prompt,
+    "speaking"
+);
         UIFeedback.hideLoading();
 
         const result = document.getElementById("speechResult");
