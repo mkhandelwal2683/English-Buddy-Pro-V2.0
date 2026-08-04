@@ -43,11 +43,13 @@ Always:
                 return this.conversationPrompt(userInput);
 
             case "writing":
-                return this.writingPrompt(userInput);
+    return this.writingPrompt(userInput);
 
-            default:
-                return this.chatPrompt(userInput);
+case "speaking":
+    return this.speakingPrompt(userInput);
 
+default:
+    return this.chatPrompt(userInput);
         }
 
     }
@@ -225,5 +227,64 @@ Return:
 `;
 
     }
+/* -----------------------------
+   AI Speaking Coach
+------------------------------ */
 
+static speakingPrompt(text) {
+
+    return `
+${this.teacherIdentity()}
+
+You are an expert English Speaking Coach.
+
+Analyze the learner's spoken English carefully.
+
+Student Speech:
+${text}
+
+Return ONLY valid JSON.
+
+{
+  "grammarScore": 0,
+  "fluencyScore": 0,
+  "pronunciationScore": 0,
+  "vocabularyScore": 0,
+  "overallScore": 0,
+  "level": "",
+  "strengths": [
+    ""
+  ],
+  "improvements": [
+    ""
+  ],
+  "correctedSentence": "",
+  "coachMessage": "",
+  "xpEarned": 10
+}
+
+Rules:
+
+1. Return JSON only.
+2. Do not include markdown.
+3. Do not include explanations outside JSON.
+4. Grammar score must be between 0–100.
+5. Fluency score must be between 0–100.
+6. Pronunciation score must be between 0–100.
+7. Vocabulary score must be between 0–100.
+8. Overall score should reflect the four scores.
+9. Level must be one of:
+   Beginner
+   Elementary
+   Intermediate
+   Advanced
+10. Provide 2–3 strengths.
+11. Provide 2–3 improvement suggestions.
+12. Correct grammar without changing the meaning.
+13. Coach message should always encourage the learner.
+14. xpEarned should be between 5 and 20.
+`;
+
+}
+   
 }
