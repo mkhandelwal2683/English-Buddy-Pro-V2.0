@@ -126,6 +126,27 @@ if (aiFeedback) {
     try {
 
         const data = JSON.parse(feedback);
+       /* ==========================================
+   Update User XP
+========================================== */
+
+try {
+
+    if (
+        typeof LessonProgress !== "undefined" &&
+        typeof LessonProgress.addXP === "function"
+    ) {
+
+        LessonProgress.addXP(data.xpEarned);
+
+    }
+
+} catch (error) {
+
+    console.error("XP Update Failed:", error);
+
+}
+       
 // Dynamic score colors
 const getScoreColor = (score) => {
 
@@ -284,8 +305,8 @@ const getLevelClass = (level) => {
 
     <div style="text-align:center;">
         <span class="xpBadge">
-            🏆 +${data.xpEarned} XP Earned
-        </span>
+    🏆 +${data.xpEarned} XP Added Successfully
+</span>
     </div>
 
 </div>
