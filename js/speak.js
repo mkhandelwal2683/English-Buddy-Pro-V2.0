@@ -144,6 +144,29 @@ const getScoreColor = (score) => {
     return "#ef4444"; // Red
 
 };
+      // Level badge color
+const getLevelClass = (level) => {
+
+    switch ((level || "").toLowerCase()) {
+
+        case "beginner":
+            return "levelBeginner";
+
+        case "elementary":
+            return "levelElementary";
+
+        case "intermediate":
+            return "levelIntermediate";
+
+        case "advanced":
+            return "levelAdvanced";
+
+        default:
+            return "levelBeginner";
+
+    }
+
+};
        
         aiFeedback.innerHTML = `
 <h3>🤖 AI Speaking Coach</h3>
@@ -227,7 +250,15 @@ const getScoreColor = (score) => {
 
     <hr>
 
-    <p><strong>🎓 Level:</strong> ${data.level}</p>
+    <div style="text-align:center;margin:15px 0;">
+
+    <span class="levelBadge ${getLevelClass(data.level)}">
+
+        🎓 ${data.level}
+
+    </span>
+
+</div>
 
     <div class="correctBox">
         <strong>✅ Correct Sentence</strong>
