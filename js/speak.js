@@ -137,8 +137,9 @@ try {
         typeof LessonProgress.addXP === "function"
     ) {
 
-        LessonProgress.addXP(data.xpEarned);
+        const earnedXP = calculateXP(data.overallScore);
 
+LessonProgress.addXP(earnedXP);
     }
 
 } catch (error) {
@@ -186,6 +187,45 @@ const getLevelClass = (level) => {
             return "levelBeginner";
 
     }
+
+};
+    /* ==========================================
+   Calculate XP from Overall Score
+========================================== */
+
+const calculateXP = (score) => {
+
+    if (score >= 90) {
+
+        return 25;
+
+    }
+
+    if (score >= 80) {
+
+        return 20;
+
+    }
+
+    if (score >= 70) {
+
+        return 15;
+
+    }
+
+    if (score >= 60) {
+
+        return 10;
+
+    }
+
+    if (score >= 40) {
+
+        return 5;
+
+    }
+
+    return 2;
 
 };
        
@@ -299,13 +339,29 @@ const getLevelClass = (level) => {
     </ul>
 
     <div class="tipBox">
-        <strong>⭐ Coach Message</strong>
-        <p>${data.coachMessage}</p>
-    </div>
+
+    <strong>⭐ Coach Message</strong>
+
+    <p>${data.coachMessage}</p>
+
+    <hr style="margin:12px 0;">
+
+    <strong>🎁 Reward</strong>
+
+    <p>
+
+        Based on your performance, you earned
+        <strong>${earnedXP} XP</strong>.
+
+        Keep practicing to earn even more!
+
+    </p>
+
+</div>
 
     <div style="text-align:center;">
         <span class="xpBadge">
-    🏆 +${data.xpEarned} XP Added Successfully
+🏆 +${earnedXP} XP Added Successfully
 </span>
     </div>
 
