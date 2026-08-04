@@ -123,15 +123,62 @@ if (result) {
 
 if (aiFeedback) {
 
-    const formattedFeedback = feedback
-        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-        .replace(/\n/g, "<br>");
+    try {
 
-    aiFeedback.innerHTML =
-        "<h3>🤖 AI Speaking Coach</h3>" +
-        "<div class='aiFeedbackContent'>" +
-        formattedFeedback +
-        "</div>";
+        const data = JSON.parse(feedback);
+
+        aiFeedback.innerHTML = `
+            <h3>🤖 AI Speaking Coach</h3>
+
+            <div class="coachCard">
+
+                <p><strong>🏆 Overall Score:</strong> ${data.overallScore}/100</p>
+
+                <p><strong>📚 Grammar:</strong> ${data.grammarScore}/100</p>
+
+                <p><strong>🗣 Fluency:</strong> ${data.fluencyScore}/100</p>
+
+                <p><strong>🎤 Pronunciation:</strong> ${data.pronunciationScore}/100</p>
+
+                <p><strong>📖 Vocabulary:</strong> ${data.vocabularyScore}/100</p>
+
+                <hr>
+
+                <p><strong>🎓 Level:</strong> ${data.level}</p>
+
+                <p><strong>✅ Correct Sentence</strong></p>
+
+                <p>${data.correctedSentence}</p>
+
+                <p><strong>💪 Strengths</strong></p>
+
+                <ul>
+                    ${data.strengths.map(item => `<li>${item}</li>`).join("")}
+                </ul>
+
+                <p><strong>🎯 Improvements</strong></p>
+
+                <ul>
+                    ${data.improvements.map(item => `<li>${item}</li>`).join("")}
+                </ul>
+
+                <p><strong>⭐ Coach Message</strong></p>
+
+                <p>${data.coachMessage}</p>
+
+                <h3>🏆 +${data.xpEarned} XP Earned</h3>
+
+            </div>
+        `;
+
+    } catch (e) {
+
+        aiFeedback.innerHTML =
+            "<h3>🤖 AI Speaking Coach</h3><pre>" +
+            feedback +
+            "</pre>";
+
+    }
 
 }
 
