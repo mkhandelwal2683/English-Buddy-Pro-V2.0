@@ -128,49 +128,88 @@ if (aiFeedback) {
         const data = JSON.parse(feedback);
 
         aiFeedback.innerHTML = `
-            <h3>🤖 AI Speaking Coach</h3>
+<h3>🤖 AI Speaking Coach</h3>
 
-            <div class="coachCard">
+<div class="coachCard">
 
-                <p><strong>🏆 Overall Score:</strong> ${data.overallScore}/100</p>
+    <h2 style="text-align:center;margin-bottom:20px;">
+        🏆 Overall Score: ${data.overallScore}/100
+    </h2>
 
-                <p><strong>📚 Grammar:</strong> ${data.grammarScore}/100</p>
+    <div class="scoreRow">
+        <div class="scoreHeader">
+            <span>📚 Grammar</span>
+            <span>${data.grammarScore}/100</span>
+        </div>
+        <div class="scoreBar">
+            <div class="scoreFill" style="width:${data.grammarScore}%"></div>
+        </div>
+    </div>
 
-                <p><strong>🗣 Fluency:</strong> ${data.fluencyScore}/100</p>
+    <div class="scoreRow">
+        <div class="scoreHeader">
+            <span>🗣 Fluency</span>
+            <span>${data.fluencyScore}/100</span>
+        </div>
+        <div class="scoreBar">
+            <div class="scoreFill" style="width:${data.fluencyScore}%"></div>
+        </div>
+    </div>
 
-                <p><strong>🎤 Pronunciation:</strong> ${data.pronunciationScore}/100</p>
+    <div class="scoreRow">
+        <div class="scoreHeader">
+            <span>🎤 Pronunciation</span>
+            <span>${data.pronunciationScore}/100</span>
+        </div>
+        <div class="scoreBar">
+            <div class="scoreFill" style="width:${data.pronunciationScore}%"></div>
+        </div>
+    </div>
 
-                <p><strong>📖 Vocabulary:</strong> ${data.vocabularyScore}/100</p>
+    <div class="scoreRow">
+        <div class="scoreHeader">
+            <span>📖 Vocabulary</span>
+            <span>${data.vocabularyScore}/100</span>
+        </div>
+        <div class="scoreBar">
+            <div class="scoreFill" style="width:${data.vocabularyScore}%"></div>
+        </div>
+    </div>
 
-                <hr>
+    <hr>
 
-                <p><strong>🎓 Level:</strong> ${data.level}</p>
+    <p><strong>🎓 Level:</strong> ${data.level}</p>
 
-                <p><strong>✅ Correct Sentence</strong></p>
+    <div class="correctBox">
+        <strong>✅ Correct Sentence</strong>
+        <p>${data.correctedSentence}</p>
+    </div>
 
-                <p>${data.correctedSentence}</p>
+    <strong>💪 Strengths</strong>
 
-                <p><strong>💪 Strengths</strong></p>
+    <ul>
+        ${data.strengths.map(item => `<li>${item}</li>`).join("")}
+    </ul>
 
-                <ul>
-                    ${data.strengths.map(item => `<li>${item}</li>`).join("")}
-                </ul>
+    <strong>🎯 Improvements</strong>
 
-                <p><strong>🎯 Improvements</strong></p>
+    <ul>
+        ${data.improvements.map(item => `<li>${item}</li>`).join("")}
+    </ul>
 
-                <ul>
-                    ${data.improvements.map(item => `<li>${item}</li>`).join("")}
-                </ul>
+    <div class="tipBox">
+        <strong>⭐ Coach Message</strong>
+        <p>${data.coachMessage}</p>
+    </div>
 
-                <p><strong>⭐ Coach Message</strong></p>
+    <div style="text-align:center;">
+        <span class="xpBadge">
+            🏆 +${data.xpEarned} XP Earned
+        </span>
+    </div>
 
-                <p>${data.coachMessage}</p>
-
-                <h3>🏆 +${data.xpEarned} XP Earned</h3>
-
-            </div>
-        `;
-
+</div>
+`;
     } catch (e) {
 
         aiFeedback.innerHTML =
