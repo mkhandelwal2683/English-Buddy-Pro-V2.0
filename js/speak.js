@@ -126,7 +126,25 @@ if (aiFeedback) {
     try {
 
         const data = JSON.parse(feedback);
+// Dynamic score colors
+const getScoreColor = (score) => {
 
+    if (score >= 80) {
+
+        return "#22c55e"; // Green
+
+    }
+
+    if (score >= 60) {
+
+        return "#f59e0b"; // Orange
+
+    }
+
+    return "#ef4444"; // Red
+
+};
+       
         aiFeedback.innerHTML = `
 <h3>🤖 AI Speaking Coach</h3>
 
@@ -150,7 +168,13 @@ if (aiFeedback) {
             <span>${data.grammarScore}/100</span>
         </div>
         <div class="scoreBar">
-            <div class="scoreFill" style="width:${data.grammarScore}%"></div>
+            <div
+    class="scoreFill"
+    style="
+        width:${data.grammarScore}%;
+        background:${getScoreColor(data.grammarScore)};
+    ">
+</div>
         </div>
     </div>
 
@@ -160,8 +184,14 @@ if (aiFeedback) {
             <span>${data.fluencyScore}/100</span>
         </div>
         <div class="scoreBar">
-            <div class="scoreFill" style="width:${data.fluencyScore}%"></div>
-        </div>
+            <div
+    class="scoreFill"
+    style="
+        width:${data.fluencyScore}%;
+        background:${getScoreColor(data.fluencyScore)};
+    ">
+</div>
+</div>
     </div>
 
     <div class="scoreRow">
@@ -170,7 +200,13 @@ if (aiFeedback) {
             <span>${data.pronunciationScore}/100</span>
         </div>
         <div class="scoreBar">
-            <div class="scoreFill" style="width:${data.pronunciationScore}%"></div>
+            <div
+    class="scoreFill"
+    style="
+        width:${data.pronunciationScore}%;
+        background:${getScoreColor(data.pronunciationScore)};
+    ">
+</div>
         </div>
     </div>
 
@@ -179,8 +215,13 @@ if (aiFeedback) {
             <span>📖 Vocabulary</span>
             <span>${data.vocabularyScore}/100</span>
         </div>
-        <div class="scoreBar">
-            <div class="scoreFill" style="width:${data.vocabularyScore}%"></div>
+        <div class="scoreBar"><div
+    class="scoreFill"
+    style="
+        width:${data.vocabularyScore}%;
+        background:${getScoreColor(data.vocabularyScore)};
+    ">
+</div>
         </div>
     </div>
 
