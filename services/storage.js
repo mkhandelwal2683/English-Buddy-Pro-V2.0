@@ -186,33 +186,43 @@ class StorageService {
 
     }
 
-    /* ==========================================
-       Daily Streak
-    ========================================== */
+/* ==========================================
+   Daily Speaking Streak
+========================================== */
 
-    getStreak() {
+getStreak() {
 
-        return this.load(
+    return this.load(
 
-            this.KEYS.STREAK,
+        this.KEYS.STREAK,
 
-            0
+        {
 
-        );
+            currentStreak: 0,
 
-    }
+            longestStreak: 0,
 
-    setStreak(value) {
+            totalPracticeDays: 0,
 
-        return this.save(
+            lastPracticeDate: null
 
-            this.KEYS.STREAK,
+        }
 
-            value
+    );
 
-        );
+}
 
-    }
+setStreak(data) {
+
+    return this.save(
+
+        this.KEYS.STREAK,
+
+        data
+
+    );
+
+}
 
     /* ==========================================
        Lessons
