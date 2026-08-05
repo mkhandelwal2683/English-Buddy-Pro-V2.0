@@ -409,4 +409,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Speak.init();
 
-});
+},
+
+/* ==========================================
+   Load Speaking Streak
+========================================== */
+
+loadStreak() {
+
+    try {
+
+        const streak = Storage.getStreak();
+
+        const current = document.getElementById("currentStreak");
+        const longest = document.getElementById("longestStreak");
+        const total = document.getElementById("totalPracticeDays");
+
+        if (current) {
+
+            current.textContent =
+                `${streak.currentStreak} Day${streak.currentStreak === 1 ? "" : "s"}`;
+
+        }
+
+        if (longest) {
+
+            longest.textContent =
+                `${streak.longestStreak} Day${streak.longestStreak === 1 ? "" : "s"}`;
+
+        }
+
+        if (total) {
+
+            total.textContent =
+                streak.totalPracticeDays;
+
+        }
+
+    } catch (error) {
+
+        console.error("Unable to load streak:", error);
+
+    }
+
+}
+
+};
