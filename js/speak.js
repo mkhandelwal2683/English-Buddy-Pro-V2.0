@@ -222,7 +222,15 @@ try {
     ) {
 
         LessonProgress.addXP(earnedXP);
+if (
+    typeof StreakManager !== "undefined" &&
+    typeof StreakManager.updateSpeakingStreak === "function"
+) {
 
+    StreakManager.updateSpeakingStreak();
+
+}
+       
     }
 
 } catch (error) {
