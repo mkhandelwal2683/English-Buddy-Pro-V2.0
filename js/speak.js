@@ -46,7 +46,7 @@ const Speak = {
             });
 
         }
-
+        this.loadStreak();
         this.loadHistory();
 
     },
@@ -230,6 +230,7 @@ if (
     StreakManager.updateSpeakingStreak();
 
 }
+    Speak.loadStreak();
        
     }
 
