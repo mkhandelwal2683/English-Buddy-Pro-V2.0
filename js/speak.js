@@ -4,9 +4,11 @@
 ========================================== */
 
 const Speak = {
-
+ initialized: false,
     init() {
-
+if (this.initialized) {return; }
+       this.initialized = true;
+       
         const startBtn = document.getElementById("startListening");
         const stopBtn = document.getElementById("stopListening");
         const clearBtn = document.getElementById("clearSpeechHistory");
