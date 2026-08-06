@@ -402,12 +402,6 @@ if (
     }
 
 }
-   
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    Speak.init();
 
 },
 
@@ -426,24 +420,17 @@ loadStreak() {
         const total = document.getElementById("totalPracticeDays");
 
         if (current) {
-
             current.textContent =
                 `${streak.currentStreak} Day${streak.currentStreak === 1 ? "" : "s"}`;
-
         }
 
         if (longest) {
-
             longest.textContent =
                 `${streak.longestStreak} Day${streak.longestStreak === 1 ? "" : "s"}`;
-
         }
 
         if (total) {
-
-            total.textContent =
-                streak.totalPracticeDays;
-
+            total.textContent = streak.totalPracticeDays;
         }
 
     } catch (error) {
@@ -455,3 +442,9 @@ loadStreak() {
 }
 
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    Speak.init();
+
+});
