@@ -15,10 +15,11 @@ const Speak = {
 
             startBtn.addEventListener("click", () => {
 
-                SpeechRecorder.start();
+    alert("Start button clicked");
 
-            });
+    SpeechRecorder.start();
 
+});
         }
 
         if (stopBtn) {
