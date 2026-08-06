@@ -3,7 +3,7 @@
    Service Worker
 ========================================== */
 
-const CACHE_NAME = "english-buddy-v2";
+const CACHE_NAME = "english-buddy-v3";
 
 const FILES_TO_CACHE = [
 
@@ -18,8 +18,12 @@ const FILES_TO_CACHE = [
 "./css/responsive.css",
 
 "./js/app.js",
-"./js/navigation.js"
-
+"./js/navigation.js",
+"./js/speak.js",
+"./js/speech-recorder.js",
+"./js/speech-history.js",
+"./js/streak-manager.js"
+   
 ];
 
 /* ==========================================
