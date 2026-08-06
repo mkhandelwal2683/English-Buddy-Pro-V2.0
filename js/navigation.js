@@ -63,8 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const pageName = button.dataset.page;
            
             showPage(pageName);
-         
-
+           if(
+              pageName === "Speak" &&
+              typeof Speak !== "undefined"
+              &&
+              typeof Speak.init === "funtion")
+           {Speak.init();}
+       
         });
 
     });
