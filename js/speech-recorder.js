@@ -17,6 +17,8 @@ const SpeechRecorder = {
 
     start() {
 
+    alert("SpeechRecorder.start() called");
+
         this.isStoppedByUser = false;
         this.fullTranscript = "";
 
