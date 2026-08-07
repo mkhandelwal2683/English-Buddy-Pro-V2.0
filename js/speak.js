@@ -429,42 +429,77 @@ const Speak = {
 
     renderFeedback(data) {
 
-        if (!this.dom.feedback) {
+    if (!this.dom.feedback) return;
 
-            return;
+    const safe = (v, d = "-") => v ?? d;
 
+    const list = (items) => {
+
+        if (!Array.isArray(items) || items.length === 0) {
+            return "<li>-</li>";
         }
 
-        const safe = (value, fallback = "-") =>
-            value ? value : fallback;
+        return items.map(item => `<li>${item}</li>`).join("");
 
-        this.dom.feedback.innerHTML = `
+    };
+
+    this.dom.feedback.innerHTML = `
+
+<div class="feedbackHeader">
 
 <h3>🤖 AI Speaking Coach</h3>
 
-<p><strong>Overall Score:</strong> ${safe(data.overallScore,0)}/100</p>
+<h1>${safe(data.overallScore,0)}</h1>
 
-<p><strong>Correct Sentence:</strong><br>
-${safe(data.correctSentence)}</p>
+<p>Overall Score /100</p>
 
-<p><strong>Strengths:</strong><br>
-${safe(data.strengths)}</p>
+</div>
 
-<p><strong>Improvements:</strong><br>
-${safe(data.improvements)}</p>
+<div class="scoreGrid">
 
-<p><strong>Pronunciation:</strong><br>
-${safe(data.pronunciation)}</p>
+<div><strong>Grammar</strong><br>${safe(data.grammarScore,0)}</div>
 
-<p><strong>Vocabulary:</strong><br>
-${safe(data.vocabulary)}</p>
+<div><strong>Fluency</strong><br>${safe(data.fluencyScore,0)}</div>
 
-<p><strong>Coach Message:</strong><br>
-${safe(data.coachMessage)}</p>
+<div><strong>Pronunciation</strong><br>${safe(data.pronunciationScore,0)}</div>
+
+<div><strong>Vocabulary</strong><br>${safe(data.vocabularyScore,0)}</div>
+
+</div>
+
+<div class="levelBadge">
+
+🏅 ${safe(data.level,"Beginner")}
+
+</div>
+
+<h4>✅ Correct Sentence</h4>
+
+<p>${safe(data.correctedSentence)}</p>
+
+<h4>💪 Strengths</h4>
+
+<ul>
+
+${list(data.strengths)}
+
+</ul>
+
+<h4>📈 Improvements</h4>
+
+<ul>
+
+${list(data.improvements)}
+
+</ul>
+
+<h4>💬 Coach Message</h4>
+
+<p>${safe(data.coachMessage)}</p>
 
 `;
 
-    },
+}
    
     /* ==========================================
        Refresh Speaking Streak
