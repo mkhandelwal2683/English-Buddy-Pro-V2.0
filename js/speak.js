@@ -315,3 +315,154 @@ const Speak = {
 
     },
   
+    /* ==========================================
+       Analyze Speech Using AI
+    ========================================== */
+
+    async analyzeSpeech(transcript) {
+
+        if (!transcript || !transcript.trim()) {
+
+            return;
+
+        }
+
+        try {
+
+            UIFeedback.showLoading(
+                "🤖 AI is analyzing your speech..."
+            );
+
+            const prompt =
+                PromptManager.buildSpeakingPrompt(
+                    transcript
+                );
+
+            const response =
+                await AI.ask(prompt);
+
+            let data;
+
+            try {
+
+                data =
+                    typeof response === "string"
+                        ? JSON.parse(response)
+                        : response;
+
+            } catch (error) {
+
+                console.error(
+                    "Invalid AI JSON:",
+                    error
+                );
+
+                UIFeedback.hideLoading();
+
+                UIFeedback.showError(
+                    "AI returned an invalid response."
+                );
+
+                return;
+
+            }
+
+            this.renderFeedback(data);
+
+            this.updateXP(data);
+
+            this.loadStreak();
+
+            UIFeedback.hideLoading();
+
+        } catch (error) {
+
+            console.error(error);
+
+            UIFeedback.hideLoading();
+
+            UIFeedback.showError(
+                "Unable to analyze your speech."
+            );
+
+        }
+
+    },
+
+    /* ==========================================
+       Update XP
+    ========================================== */
+
+    updateXP(data) {
+
+        if (
+            !data ||
+            typeof calculateXP !== "function"
+        ) {
+
+            return;
+
+        }
+
+        const score =
+            Number(data.overallScore) || 0;
+
+        const earnedXP =
+            calculateXP(score);
+
+        if (
+            typeof LessonProgress !== "undefined" &&
+            typeof LessonProgress.addXP === "function"
+        ) {
+
+            LessonProgress.addXP(
+                earnedXP
+            );
+
+        }
+
+    },
+
+    /* ==========================================
+       Render AI Feedback
+    ========================================== */
+
+    renderFeedback(data) {
+
+        if (!this.dom.feedback) {
+
+            return;
+
+        }
+
+        const safe = (value, fallback = "-") =>
+            value ? value : fallback;
+
+        this.dom.feedback.innerHTML = `
+
+<h3>🤖 AI Speaking Coach</h3>
+
+<p><strong>Overall Score:</strong> ${safe(data.overallScore,0)}/100</p>
+
+<p><strong>Correct Sentence:</strong><br>
+${safe(data.correctSentence)}</p>
+
+<p><strong>Strengths:</strong><br>
+${safe(data.strengths)}</p>
+
+<p><strong>Improvements:</strong><br>
+${safe(data.improvements)}</p>
+
+<p><strong>Pronunciation:</strong><br>
+${safe(data.pronunciation)}</p>
+
+<p><strong>Vocabulary:</strong><br>
+${safe(data.vocabulary)}</p>
+
+<p><strong>Coach Message:</strong><br>
+${safe(data.coachMessage)}</p>
+
+`;
+
+    },
+   
