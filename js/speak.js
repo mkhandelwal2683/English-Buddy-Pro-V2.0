@@ -370,7 +370,7 @@ const Speak = {
             this.renderFeedback(data);
 
             this.updateXP(data);
-
+            this.updateStreak();
             this.loadStreak();
 
             UIFeedback.hideLoading();
@@ -466,3 +466,214 @@ ${safe(data.coachMessage)}</p>
 
     },
    
+    /* ==========================================
+       Refresh Speaking Streak
+    ========================================== */
+
+    loadStreak() {
+
+        try {
+
+            const streak = Storage.getStreak();
+
+            if (this.dom.currentStreak) {
+
+                this.dom.currentStreak.textContent =
+                    `${streak.currentStreak} Day${streak.currentStreak === 1 ? "" : "s"}`;
+
+            }
+
+            if (this.dom.longestStreak) {
+
+                this.dom.longestStreak.textContent =
+                    `${streak.longestStreak} Day${streak.longestStreak === 1 ? "" : "s"}`;
+
+            }
+
+            if (this.dom.totalPracticeDays) {
+
+                this.dom.totalPracticeDays.textContent =
+                    streak.totalPracticeDays;
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load streak:",
+                error
+            );
+
+        }
+
+    },
+
+    /* ==========================================
+       Update Streak After Successful Practice
+    ========================================== */
+
+    updateStreak() {
+
+        try {
+
+            const streak =
+                StreakManager.updateSpeakingStreak();
+
+            if (streak) {
+
+                this.loadStreak();
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Unable to update streak:",
+                error
+            );
+
+        }
+
+    },
+
+    /* ==========================================
+       Reset AI Feedback Card
+    ========================================== */
+
+    resetFeedback() {
+
+        if (!this.dom.feedback) {
+
+            return;
+
+        }
+
+        this.dom.feedback.innerHTML = `
+
+<h3>🤖 AI Speaking Coach</h3>
+
+<p>Your AI feedback will appear here...</p>
+
+`;
+
+    },
+
+    /* ==========================================
+       Reset Speak Screen
+    ========================================== */
+
+    resetScreen() {
+
+        if (this.dom.speechResult) {
+
+            this.dom.speechResult.textContent =
+                "Your speech will appear here...";
+
+        }
+
+        if (this.dom.recordingStatus) {
+
+            this.dom.recordingStatus.textContent =
+                "🟢 Ready";
+
+        }
+
+        if (this.dom.recordingTimer) {
+
+            this.dom.recordingTimer.textContent =
+                "00:00";
+
+        }
+
+        this.resetFeedback();
+
+    },
+    /* ==========================================
+       Destroy Speak Module
+    ========================================== */
+
+    destroy() {
+
+        try {
+
+            if (this.dom.startBtn) {
+
+                this.dom.startBtn.replaceWith(
+                    this.dom.startBtn.cloneNode(true)
+                );
+
+            }
+
+            if (this.dom.stopBtn) {
+
+                this.dom.stopBtn.replaceWith(
+                    this.dom.stopBtn.cloneNode(true)
+                );
+
+            }
+
+            if (this.dom.clearHistoryBtn) {
+
+                this.dom.clearHistoryBtn.replaceWith(
+                    this.dom.clearHistoryBtn.cloneNode(true)
+                );
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Speak destroy failed:",
+                error
+            );
+
+        }
+
+        this.initialized = false;
+
+    }
+
+};
+
+/* ==========================================
+   Initialize Speak Module
+========================================== */
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+
+            if (
+                typeof Speak !== "undefined"
+            ) {
+
+                Speak.init();
+
+            }
+
+        }
+    );
+
+} else {
+
+    if (
+        typeof Speak !== "undefined"
+    ) {
+
+        Speak.init();
+
+    }
+
+}
+
+/* ==========================================
+   Export Globally
+========================================== */
+
+window.Speak = Speak;
+
+console.log(
+    "✅ English Buddy Pro Speak Module v5.0 Loaded"
+);   
