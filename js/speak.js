@@ -509,36 +509,204 @@ style="width:${safe(data.vocabularyScore,0)}%">
 </div>
 
 <div class="correctBox">
+renderFeedback(data) {
+
+    if (!this.dom.feedback) return;
+
+    const safe = (value, fallback = "-") =>
+        value !== undefined &&
+        value !== null &&
+        value !== ""
+            ? value
+            : fallback;
+
+    const list = (items) => {
+
+        if (!Array.isArray(items) || items.length === 0) {
+            return "<li>-</li>";
+        }
+
+        return items
+            .map(item => `<li>${item}</li>`)
+            .join("");
+
+    };
+
+    const level = safe(data.level, "Beginner");
+
+    this.dom.feedback.innerHTML = `
+
+<div class="coachCard">
+
+<div class="scoreCircle">
+
+<div class="scoreValue">
+
+${safe(data.overallScore,0)}
+
+</div>
+
+<div class="scoreText">
+
+Overall Score
+
+</div>
+
+</div>
+
+<div class="levelBadge level${level}">
+
+${level}
+
+</div>
+
+<div class="scoreRow">
+
+<div class="scoreHeader">
+
+<span>Grammar</span>
+
+<span>${safe(data.grammarScore,0)}%</span>
+
+</div>
+
+<div class="scoreBar">
+
+<div class="scoreFill"
+
+style="width:${safe(data.grammarScore,0)}%">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="scoreRow">
+
+<div class="scoreHeader">
+
+<span>Fluency</span>
+
+<span>${safe(data.fluencyScore,0)}%</span>
+
+</div>
+
+<div class="scoreBar">
+
+<div class="scoreFill"
+
+style="width:${safe(data.fluencyScore,0)}%">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="scoreRow">
+
+<div class="scoreHeader">
+
+<span>Pronunciation</span>
+
+<span>${safe(data.pronunciationScore,0)}%</span>
+
+</div>
+
+<div class="scoreBar">
+
+<div class="scoreFill"
+
+style="width:${safe(data.pronunciationScore,0)}%">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="scoreRow">
+
+<div class="scoreHeader">
+
+<span>Vocabulary</span>
+
+<span>${safe(data.vocabularyScore,0)}%</span>
+
+</div>
+
+<div class="scoreBar">
+
+<div class="scoreFill"
+
+style="width:${safe(data.vocabularyScore,0)}%">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="correctBox">
+
 <h4>✅ Correct Sentence</h4>
-<p>${safe(data.correctedSentence)}</p>
+
+<p>
+
+${safe(data.correctedSentence || data.correctSentence)}
+
+</p>
+
 </div>
 
 <div class="tipBox">
+
 <h4>💪 Strengths</h4>
+
 <ul>
+
 ${list(data.strengths)}
+
 </ul>
+
+</div>
+
+<div class="tipBox">
 
 <h4>📈 Improvements</h4>
+
 <ul>
+
 ${list(data.improvements)}
+
 </ul>
+
 </div>
 
 <div class="tipBox">
+
 <h4>💬 Coach Message</h4>
-<p>${safe(data.coachMessage)}</p>
+
+<p>
+
+${safe(data.coachMessage)}
+
+</p>
+
 </div>
 
 <div class="xpBadge">
+
 ⭐ XP Earned: ${safe(data.xpEarned,0)}
+
 </div>
 
 </div>
 
 `;
 
-}
+},
    
     /* ==========================================
        Refresh Speaking Streak
