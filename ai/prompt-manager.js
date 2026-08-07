@@ -51,7 +51,15 @@ case "speaking":
 default:
     return this.chatPrompt(userInput);
         }
+/* -----------------------------
+   Compatibility Helper
+------------------------------ */
 
+static buildSpeakingPrompt(text) {
+
+    return this.speakingPrompt(text);
+
+}
     }
 
     /* -----------------------------
